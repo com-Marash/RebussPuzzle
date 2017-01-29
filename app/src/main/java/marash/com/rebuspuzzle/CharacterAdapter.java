@@ -14,14 +14,12 @@ import android.widget.TextView;
 
 public class CharacterAdapter extends BaseAdapter {
 
-    Context context;
-    char[] chars;
-    LayoutInflater inflator;
+    private char[] chars;
+    private LayoutInflater inflater;
 
     public CharacterAdapter(Context applicationContext, char[] chars) {
-        this.context = applicationContext;
         this.chars = chars;
-        inflator = (LayoutInflater.from(applicationContext));
+        inflater = (LayoutInflater.from(applicationContext));
     }
 
     @Override
@@ -40,11 +38,12 @@ public class CharacterAdapter extends BaseAdapter {
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflator.inflate(R.layout.gridview_charachters, null); // inflate the layout
+    public View getView(int i, View view, ViewGroup parent) {
+        if (view == null) {
+            view = inflater.inflate(R.layout.gridview_charachters, parent, false); // inflate the layout
+        }
         TextView tv = (TextView) view.findViewById(R.id.simple_character); // get the reference of ImageView
-
-        tv.setText("hello"); // set logo images
+        tv.setText(chars[i] + ""); // set logo images
         return view;
     }
 }

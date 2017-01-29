@@ -41,7 +41,7 @@ public class GameAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup parent) {
         if (view == null) {
-            view = inflter.inflate(R.layout.gridview_item, parent, true); // inflate the layout
+            view = inflter.inflate(R.layout.gridview_item, parent, false); // inflate the layout
         }
         ImageView defaultImage = (ImageView) view.findViewById(R.id.CellImage); // get the reference of ImageView
         defaultImage.setImageResource(logos.get(i).imageID); // set logo images
