@@ -8,18 +8,18 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainPage.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SelectedImageActivity">
+        <activity android:name=".SelectedImage.SelectedImageActivity">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".MainPage.MainActivity" />
             <intent-filter>
                 <action android:name="com.marash.RebusPuzzle.SelectedImageActivity"/>
 

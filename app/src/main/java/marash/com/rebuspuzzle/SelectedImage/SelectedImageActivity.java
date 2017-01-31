@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle;
+package marash.com.rebuspuzzle.SelectedImage;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -7,6 +7,8 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+import marash.com.rebuspuzzle.MainPage.GameCell_info;
+import marash.com.rebuspuzzle.R;
 
 /**
  * Created by Maedeh on 1/24/2017.
@@ -23,16 +25,15 @@ public class SelectedImageActivity extends AppCompatActivity {
 
         GameCell_info cellInfo = (GameCell_info) getIntent().getSerializableExtra("gameCellInfo"); // get Intent which we set from Previous Activity
 
-        selectedImage.setImageResource(cellInfo.imageID); // get image from Intent and set it in ImageView
+        selectedImage.setImageResource(cellInfo.getImageID()); // get image from Intent and set it in ImageView
 
         GridView charGrid = (GridView) findViewById(R.id.characters);
-        CharacterAdapter charAdapter = new CharacterAdapter(getApplicationContext(), cellInfo.alphabets);
+        CharacterAdapter charAdapter = new CharacterAdapter(getApplicationContext(), cellInfo.getAlphabets());
         charGrid.setAdapter(charAdapter);
         charGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                //TextView t = (TextView) view;
-                //t.setText(" ");
+
             }
         });
 

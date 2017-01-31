@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle;
+package marash.com.rebuspuzzle.MainPage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -8,6 +8,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 
 import java.util.ArrayList;
+
+import marash.com.rebuspuzzle.R;
+import marash.com.rebuspuzzle.SelectedImage.SelectedImageActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -29,9 +32,9 @@ public class MainActivity extends AppCompatActivity {
         gameGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if (gameImages.get(position).isLocked) {
+                if (gameImages.get(position).isLocked()) {
                     //TODO show message that this level is lock!
-                } else if (!gameImages.get(position).isSolved) {
+                } else if (!gameImages.get(position).isSolved()) {
                     //TODO open the puzzle for that picture.
                     Intent intent = new Intent(MainActivity.this, SelectedImageActivity.class);
                     intent.putExtra("gameCellInfo", gameImages.get(position)); // put gameCellInfo in Intent
@@ -43,7 +46,13 @@ public class MainActivity extends AppCompatActivity {
 
     public void gameCreator() {
 
-        GameCell_info g_1 = new GameCell_info(R.drawable.carrot, "carrot", false, false, new char[]{'c', 'r', 'r', 'a', 'o', 't', 'g', 'f'});
+        GameCell_info g_1 = new GameCell_info();
+        g_1.setImageID(R.drawable.carrot);
+        g_1.setSolution("carrot");
+        g_1.setLocked(false);
+        g_1.setSolved(false);
+        g_1.setAlphabets(new char[]{'c', 'r', 'r', 'a', 'o', 't', 'g', 'f'});
+
         gameImages.add(g_1);
         gameImages.add(g_1);
         gameImages.add(g_1);

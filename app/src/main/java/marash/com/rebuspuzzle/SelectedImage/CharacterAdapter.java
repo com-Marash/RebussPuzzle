@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle;
+package marash.com.rebuspuzzle.SelectedImage;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -6,6 +6,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+
+import marash.com.rebuspuzzle.R;
 
 
 /**

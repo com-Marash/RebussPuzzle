@@ -6,8 +6,11 @@
     <TextView
         android:id="@+id/simple_character"
         android:textColor="#000"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="18sp" />
+        android:layout_width="45sp"
+        android:layout_height="45sp"
+        android:textSize="20sp"
+        android:background="#e1b3b3"
+        android:padding="5sp"
+        android:gravity="center"/>
 
 </LinearLayout>

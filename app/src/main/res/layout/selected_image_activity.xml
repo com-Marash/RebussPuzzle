@@ -5,16 +5,17 @@
 
     <ImageView
         android:id="@+id/selectedImage"
-        android:layout_width="match_parent"
-        android:layout_height="80sp"
+        android:layout_width="350sp"
+        android:layout_height="150sp"
         android:scaleType="fitXY"
-        android:layout_gravity="center_horizontal"/>
+        android:layout_margin="15sp"
+        android:layout_gravity="center" />
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/selectedImage"
-        android:layout_marginTop="50sp"
+        android:layout_marginTop="20sp"
         android:id="@+id/sol_1"
         android:layout_marginLeft="3sp"
         android:layout_marginRight="3sp" />
@@ -24,7 +25,7 @@
         android:layout_toEndOf="@+id/sol_1"
         android:layout_toRightOf="@+id/sol_1"
         android:layout_below="@+id/selectedImage"
-        android:layout_marginTop="50sp"
+        android:layout_marginTop="20sp"
         android:id="@+id/sol_2"
         android:layout_marginLeft="3sp"
         android:layout_marginRight="3sp" />
@@ -34,7 +35,7 @@
         android:layout_toEndOf="@+id/sol_2"
         android:layout_toRightOf="@+id/sol_2"
         android:layout_below="@+id/selectedImage"
-        android:layout_marginTop="50sp"
+        android:layout_marginTop="20sp"
         android:id="@+id/sol_3"
         android:layout_marginLeft="3sp"
         android:layout_marginRight="3sp" />
@@ -45,9 +46,13 @@
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
+        android:layout_marginLeft="30sp"
+        android:layout_marginStart="30sp"
+        android:layout_marginRight="30sp"
+        android:layout_marginEnd="30sp"
+        android:layout_marginTop="80sp"
         android:layout_below="@+id/sol_1"
-        android:layout_marginTop="30sp"
-        android:numColumns="3"
+        android:numColumns="6"
         android:horizontalSpacing="4sp"
         android:verticalSpacing="4sp"
         android:listSelector="#9f2cb5"
