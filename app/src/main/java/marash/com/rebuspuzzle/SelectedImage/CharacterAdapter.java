@@ -5,7 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.TextView;
+import android.widget.ImageView;
 
 import marash.com.rebuspuzzle.R;
 
@@ -16,17 +16,17 @@ import marash.com.rebuspuzzle.R;
 
 public class CharacterAdapter extends BaseAdapter {
 
-    private char[] chars;
+    private AlphabetChar[] alphabetChars;
     private LayoutInflater inflater;
 
-    public CharacterAdapter(Context applicationContext, char[] chars) {
-        this.chars = chars;
+    public CharacterAdapter(Context applicationContext, AlphabetChar[] alphabetChars) {
+        this.alphabetChars = alphabetChars;
         inflater = (LayoutInflater.from(applicationContext));
     }
 
     @Override
     public int getCount() {
-        return chars.length;
+        return alphabetChars.length;
     }
 
     @Override
@@ -44,8 +44,8 @@ public class CharacterAdapter extends BaseAdapter {
         if (view == null) {
             view = inflater.inflate(R.layout.gridview_charachters, parent, false); // inflate the layout
         }
-        TextView tv = (TextView) view.findViewById(R.id.simple_character); // get the reference of ImageView
-        tv.setText(chars[i] + ""); // set logo images
+        ImageView iv = (ImageView) view.findViewById(R.id.simple_character); // get the reference of ImageView
+        iv.setImageResource(GetIconID.getID(alphabetChars[i].getCharacter())); // set logo images
         return view;
     }
 }

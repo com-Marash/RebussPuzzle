@@ -33,7 +33,8 @@ public class SelectedImageActivity extends AppCompatActivity {
         charGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-
+                ImageView defaultImage = (ImageView) view.findViewById(R.id.simple_character); // get the reference of ImageView
+                defaultImage.setImageResource(R.drawable.empty_letter);
             }
         });
 

@@ -2,6 +2,8 @@ package marash.com.rebuspuzzle.MainPage;
 
 import java.io.Serializable;
 
+import marash.com.rebuspuzzle.SelectedImage.AlphabetChar;
+
 /**
  * Created by Maedeh on 1/25/2017.
  */
@@ -11,7 +13,7 @@ public class GameCell_info implements Serializable {
     private int imageID;
     private String solution;
     private boolean isLocked, isSolved;
-    private char[] alphabets;
+    private AlphabetChar[] alphabets;
 
     public int getImageID() {
         return imageID;
@@ -21,11 +23,11 @@ public class GameCell_info implements Serializable {
         this.imageID = imageID;
     }
 
-    public char[] getAlphabets() {
+    public AlphabetChar[] getAlphabets() {
         return alphabets;
     }
 
-    public void setAlphabets(char[] alphabets) {
+    public void setAlphabets(AlphabetChar[] alphabets) {
         this.alphabets = alphabets;
     }
 

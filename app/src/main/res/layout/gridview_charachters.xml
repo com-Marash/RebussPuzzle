@@ -3,14 +3,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <TextView
+    <ImageView
         android:id="@+id/simple_character"
-        android:textColor="#000"
         android:layout_width="45sp"
         android:layout_height="45sp"
-        android:textSize="20sp"
-        android:background="#e1b3b3"
-        android:padding="5sp"
-        android:gravity="center"/>
+        android:scaleType="fitXY"
+        android:layout_gravity="center_horizontal" />
 
 </LinearLayout>

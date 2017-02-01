@@ -10,6 +10,7 @@ import android.widget.GridView;
 import java.util.ArrayList;
 
 import marash.com.rebuspuzzle.R;
+import marash.com.rebuspuzzle.SelectedImage.AlphabetChar;
 import marash.com.rebuspuzzle.SelectedImage.SelectedImageActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -51,7 +52,8 @@ public class MainActivity extends AppCompatActivity {
         g_1.setSolution("carrot");
         g_1.setLocked(false);
         g_1.setSolved(false);
-        g_1.setAlphabets(new char[]{'c', 'r', 'r', 'a', 'o', 't', 'g', 'f'});
+        g_1.setAlphabets(new AlphabetChar[]{new AlphabetChar('A'), new AlphabetChar('B'), new AlphabetChar('C'),
+                new AlphabetChar('D'), new AlphabetChar('E'), new AlphabetChar('F'), new AlphabetChar('G')});
 
         gameImages.add(g_1);
         gameImages.add(g_1);
