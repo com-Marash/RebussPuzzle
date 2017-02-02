@@ -4,9 +4,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.Button;
 import android.widget.GridView;
 import android.widget.ImageView;
+
 import marash.com.rebuspuzzle.MainPage.GameCell_info;
 import marash.com.rebuspuzzle.R;
 
@@ -16,6 +16,9 @@ import marash.com.rebuspuzzle.R;
 
 public class SelectedImageActivity extends AppCompatActivity {
 
+    GameCell_info cellInfo;
+    AlphabetChar[] solutionChars, alphabetChars;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,36 +26,72 @@ public class SelectedImageActivity extends AppCompatActivity {
 
         ImageView selectedImage = (ImageView) findViewById(R.id.selectedImage); // init a ImageView
 
-        GameCell_info cellInfo = (GameCell_info) getIntent().getSerializableExtra("gameCellInfo"); // get Intent which we set from Previous Activity
+        cellInfo = (GameCell_info) getIntent().getSerializableExtra("gameCellInfo"); // get Intent which we set from Previous Activity
 
         selectedImage.setImageResource(cellInfo.getImageID()); // get image from Intent and set it in ImageView
 
+        GridView solutionGrid = (GridView) findViewById(R.id.sol_1);
+
+        solutionChars = new AlphabetChar[cellInfo.getSolution().length()];
+        alphabetChars = cellInfo.getAlphabets().clone();
+
+        int i = 0;
+        for (char ch : cellInfo.getSolution().toCharArray()) {
+            if (ch != ' ') {
+                solutionChars[i] = new AlphabetChar('#', -1);
+            } else {
+                solutionChars[i] = new AlphabetChar(' ', -1);
+            }
+            i++;
+        }
+        final CharacterAdapter solutionCharAdapter = new CharacterAdapter(getApplicationContext(), solutionChars);
+        solutionGrid.setAdapter(solutionCharAdapter);
         GridView charGrid = (GridView) findViewById(R.id.characters);
-        CharacterAdapter charAdapter = new CharacterAdapter(getApplicationContext(), cellInfo.getAlphabets());
+        final CharacterAdapter charAdapter = new CharacterAdapter(getApplicationContext(), alphabetChars);
         charGrid.setAdapter(charAdapter);
+
+        solutionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                AlphabetChar clickedElement = solutionChars[position];
+                if (clickedElement.getCharacter() == '#' || clickedElement.getCharacter() == ' ') {
+                    return;
+                }
+                alphabetChars[clickedElement.getLocation()].setCharacter(clickedElement.getCharacter());
+                clickedElement.setCharacter('#');
+                clickedElement.setLocation(-1);
+                solutionCharAdapter.notifyDataSetChanged();
+                charAdapter.notifyDataSetChanged();
+
+            }
+        });
         charGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                ImageView defaultImage = (ImageView) view.findViewById(R.id.simple_character); // get the reference of ImageView
-                defaultImage.setImageResource(R.drawable.empty_letter);
+                AlphabetChar clickedElement = alphabetChars[position];
+                if (clickedElement.getCharacter() == '#') {
+                    return;
+                }
+                int availablePosition = getAvailablePosition();
+                if (availablePosition == -1) {
+                    return;
+                }
+                solutionChars[availablePosition].setCharacter(clickedElement.getCharacter());
+                solutionChars[availablePosition].setLocation(position);
+                clickedElement.setCharacter('#');
+                solutionCharAdapter.notifyDataSetChanged();
+                charAdapter.notifyDataSetChanged();
             }
         });
-
-
-        userInterface();
-
     }
 
-
-    public void userInterface() {
-
-        Button s1 = (Button) findViewById(R.id.sol_1);
-        s1.setText("f");
-        Button s2 = (Button) findViewById(R.id.sol_2);
-        s2.setText("k");
-        Button s3 = (Button) findViewById(R.id.sol_3);
-        s3.setText("b");
-
-
+    private int getAvailablePosition() {
+        for (int i = 0; i < solutionChars.length; i++) {
+            if (solutionChars[i].getCharacter() == '#') {
+                return i;
+            }
+        }
+        return -1;
     }
+
 }

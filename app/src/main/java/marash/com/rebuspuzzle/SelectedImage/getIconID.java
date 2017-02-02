@@ -11,6 +11,8 @@ public class GetIconID{
     public static int getID(char myChar){
 
         switch (myChar){
+            case '#':
+                return R.drawable.empty_letter;
             case 'A':
                 return R.drawable.icon_a;
             case 'B':

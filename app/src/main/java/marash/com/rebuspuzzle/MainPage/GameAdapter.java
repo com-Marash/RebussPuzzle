@@ -18,11 +18,11 @@ import marash.com.rebuspuzzle.R;
 public class GameAdapter extends BaseAdapter {
 
     private ArrayList<GameCell_info> logos;
-    private LayoutInflater inflter;
+    private LayoutInflater inflater;
 
     public GameAdapter(Context applicationContext, ArrayList<GameCell_info> logos) {
         this.logos = logos;
-        inflter = (LayoutInflater.from(applicationContext));
+        inflater = (LayoutInflater.from(applicationContext));
     }
 
     @Override
@@ -43,7 +43,7 @@ public class GameAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup parent) {
         if (view == null) {
-            view = inflter.inflate(R.layout.gridview_item, parent, false); // inflate the layout
+            view = inflater.inflate(R.layout.gridview_item, parent, false); // inflate the layout
         }
         ImageView defaultImage = (ImageView) view.findViewById(R.id.CellImage); // get the reference of ImageView
         defaultImage.setImageResource(logos.get(i).getImageID()); // set logo images

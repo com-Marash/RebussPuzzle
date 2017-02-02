@@ -16,8 +16,8 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
         android:numColumns="3"
-        android:horizontalSpacing="12sp"
-        android:verticalSpacing="12sp"
+        android:horizontalSpacing="12dp"
+        android:verticalSpacing="12dp"
         android:listSelector="#831f1f"
         android:id="@+id/gameGridView"/>
 </RelativeLayout>

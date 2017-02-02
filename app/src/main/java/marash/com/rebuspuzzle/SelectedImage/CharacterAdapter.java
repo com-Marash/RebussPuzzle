@@ -6,7 +6,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
-
 import marash.com.rebuspuzzle.R;
 
 
@@ -45,7 +44,12 @@ public class CharacterAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.gridview_charachters, parent, false); // inflate the layout
         }
         ImageView iv = (ImageView) view.findViewById(R.id.simple_character); // get the reference of ImageView
-        iv.setImageResource(GetIconID.getID(alphabetChars[i].getCharacter())); // set logo images
+        if (alphabetChars[i].getCharacter() == ' ') {
+            iv.setVisibility(View.GONE);
+        } else {
+            iv.setVisibility(View.VISIBLE);
+            iv.setImageResource(GetIconID.getID(alphabetChars[i].getCharacter())); // set logo images
+        }
         return view;
     }
 }

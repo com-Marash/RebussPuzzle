@@ -5,57 +5,42 @@
 
     <ImageView
         android:id="@+id/selectedImage"
-        android:layout_width="350sp"
-        android:layout_height="150sp"
+        android:layout_width="350dp"
+        android:layout_height="150dp"
         android:scaleType="fitXY"
-        android:layout_margin="15sp"
+        android:layout_margin="15dp"
         android:layout_gravity="center" />
 
-    <Button
+    <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/selectedImage"
-        android:layout_marginTop="20sp"
         android:id="@+id/sol_1"
-        android:layout_marginLeft="3sp"
-        android:layout_marginRight="3sp" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/sol_1"
-        android:layout_toRightOf="@+id/sol_1"
-        android:layout_below="@+id/selectedImage"
-        android:layout_marginTop="20sp"
-        android:id="@+id/sol_2"
-        android:layout_marginLeft="3sp"
-        android:layout_marginRight="3sp" />
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toEndOf="@+id/sol_2"
-        android:layout_toRightOf="@+id/sol_2"
-        android:layout_below="@+id/selectedImage"
-        android:layout_marginTop="20sp"
-        android:id="@+id/sol_3"
-        android:layout_marginLeft="3sp"
-        android:layout_marginRight="3sp" />
-
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginLeft="20dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
+        android:numColumns="auto_fit"
+        android:columnWidth="50dp"
+        android:horizontalSpacing="3dp"
+        android:verticalSpacing="3dp" />
 
     <GridView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginLeft="30sp"
-        android:layout_marginStart="30sp"
-        android:layout_marginRight="30sp"
-        android:layout_marginEnd="30sp"
-        android:layout_marginTop="80sp"
+        android:layout_marginLeft="30dp"
+        android:layout_marginStart="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginTop="80dp"
         android:layout_below="@+id/sol_1"
-        android:numColumns="6"
-        android:horizontalSpacing="4sp"
-        android:verticalSpacing="4sp"
-        android:listSelector="#9f2cb5"
+        android:numColumns="auto_fit"
+        android:columnWidth="50dp"
+        android:horizontalSpacing="4dp"
+        android:verticalSpacing="4dp"
         android:id="@+id/characters"/>
 
 
