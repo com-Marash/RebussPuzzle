@@ -1,8 +1,8 @@
-package marash.com.rebuspuzzle.MainPage;
+package marash.com.rebuspuzzle.main_page;
 
 import java.io.Serializable;
 
-import marash.com.rebuspuzzle.SelectedImage.AlphabetChar;
+import marash.com.rebuspuzzle.selected_image.AlphabetChar;
 
 /**
  * Created by Maedeh on 1/25/2017.

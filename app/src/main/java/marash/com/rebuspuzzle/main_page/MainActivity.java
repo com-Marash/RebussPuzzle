@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle.MainPage;
+package marash.com.rebuspuzzle.main_page;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,8 +10,8 @@ import android.widget.GridView;
 import java.util.ArrayList;
 
 import marash.com.rebuspuzzle.R;
-import marash.com.rebuspuzzle.SelectedImage.AlphabetChar;
-import marash.com.rebuspuzzle.SelectedImage.SelectedImageActivity;
+import marash.com.rebuspuzzle.selected_image.AlphabetChar;
+import marash.com.rebuspuzzle.selected_image.SelectedImageActivity;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         GameCell_info g_1 = new GameCell_info();
         g_1.setImageID(R.drawable.carrot);
-        g_1.setSolution("carrot");
+        g_1.setSolution("ABCDEF");
         g_1.setLocked(false);
         g_1.setSolved(false);
         g_1.setAlphabets(new AlphabetChar[]{new AlphabetChar('A'), new AlphabetChar('B'), new AlphabetChar('C'),

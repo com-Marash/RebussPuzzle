@@ -1,5 +1,6 @@
-package marash.com.rebuspuzzle.SelectedImage;
+package marash.com.rebuspuzzle.selected_image;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -7,8 +8,8 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import marash.com.rebuspuzzle.MainPage.GameCell_info;
 import marash.com.rebuspuzzle.R;
+import marash.com.rebuspuzzle.main_page.GameCell_info;
 
 /**
  * Created by Maedeh on 1/24/2017.
@@ -24,6 +25,13 @@ public class SelectedImageActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.selected_image_activity);
 
+        gamePlaying();
+
+    }
+
+
+
+    private void gamePlaying() {
         ImageView selectedImage = (ImageView) findViewById(R.id.selectedImage); // init a ImageView
 
         cellInfo = (GameCell_info) getIntent().getSerializableExtra("gameCellInfo"); // get Intent which we set from Previous Activity
@@ -81,8 +89,25 @@ public class SelectedImageActivity extends AppCompatActivity {
                 clickedElement.setCharacter('#');
                 solutionCharAdapter.notifyDataSetChanged();
                 charAdapter.notifyDataSetChanged();
+                //checking win condition.
+                checkWinCondition();
             }
         });
+    }
+
+    private void checkWinCondition() {
+
+        if(getAvailablePosition() == -1){
+            String s = "";
+            for(int i = 0; i < solutionChars.length; i++){
+                s = s + solutionChars[i].getCharacter();
+            }
+            if(s.equals(cellInfo.getSolution())){
+                Intent intent = new Intent(SelectedImageActivity.this, WinTransitionActivity.class);
+                startActivity(intent);
+            }
+        }
+
     }
 
     private int getAvailablePosition() {

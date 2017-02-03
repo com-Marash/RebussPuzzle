@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle.SelectedImage;
+package marash.com.rebuspuzzle.selected_image;
 
 import marash.com.rebuspuzzle.R;
 

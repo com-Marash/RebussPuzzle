@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle.MainPage;
+package marash.com.rebuspuzzle.main_page;
 
 import android.content.Context;
 import android.view.LayoutInflater;
