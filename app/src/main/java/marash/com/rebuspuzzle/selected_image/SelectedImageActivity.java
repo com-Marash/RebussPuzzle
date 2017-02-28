@@ -7,7 +7,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-
 import marash.com.rebuspuzzle.R;
 import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
 import marash.com.rebuspuzzle.dto.GameCell_info;
@@ -99,8 +98,8 @@ public class SelectedImageActivity extends AppCompatActivity {
 
         if (getAvailablePosition() == -1) {
             String s = "";
-            for (int i = 0; i < solutionChars.length; i++) {
-                s = s + solutionChars[i].getCharacter();
+            for (AlphabetChar a:solutionChars) {
+                s = s + a.getCharacter();
             }
             if (s.equals(cellInfo.getSolution())) {
                 Intent intent = new Intent(SelectedImageActivity.this, WinTransitionActivity.class);

@@ -26,9 +26,9 @@ public class WinTransitionActivity extends AppCompatActivity {
 
     public void NextLevelFunction(View view) {
         int nextLevelPosition = getIntent().getIntExtra("nextLevelPosition", -1);
-        if(nextLevelPosition < MainActivity.gameCellArray.size()) {
+        if(nextLevelPosition <= MainActivity.gameCellArray.size()) {
             Intent intent = new Intent(WinTransitionActivity.this, SelectedImageActivity.class);
-            intent.putExtra("gameCellInfo", MainActivity.gameCellArray.get(nextLevelPosition));
+            intent.putExtra("gameCellInfo", MainActivity.gameCellArray.get(nextLevelPosition - 1));
             startActivity(intent);
         }else {
             Intent intent = new Intent(WinTransitionActivity.this, MainActivity.class);
