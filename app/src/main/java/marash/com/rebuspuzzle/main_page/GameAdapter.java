@@ -10,6 +10,8 @@ import android.widget.ImageView;
 import java.util.ArrayList;
 
 import marash.com.rebuspuzzle.R;
+import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
+import marash.com.rebuspuzzle.dto.GameCell_info;
 
 /**
  * Created by Maedeh on 1/24/2017.
@@ -46,7 +48,7 @@ public class GameAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.gridview_item, parent, false); // inflate the layout
         }
         ImageView defaultImage = (ImageView) view.findViewById(R.id.CellImage); // get the reference of ImageView
-        defaultImage.setImageResource(logos.get(i).getImageID()); // set logo images
+        defaultImage.setImageBitmap(ImageByteToBitmap.convert(logos.get(i).getImage()));
         return view;
     }
 }

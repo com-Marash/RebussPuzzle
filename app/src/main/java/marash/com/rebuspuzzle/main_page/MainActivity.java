@@ -7,17 +7,18 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import java.io.InputStream;
+import java.io.ObjectInputStream;
 import java.util.ArrayList;
 
 import marash.com.rebuspuzzle.R;
-import marash.com.rebuspuzzle.selected_image.AlphabetChar;
+import marash.com.rebuspuzzle.dto.GameCell_info;
 import marash.com.rebuspuzzle.selected_image.SelectedImageActivity;
 
 public class MainActivity extends AppCompatActivity {
 
     GridView gameGrid;
-
-    ArrayList<GameCell_info> gameImages = new ArrayList<GameCell_info>();
+    public static ArrayList<GameCell_info> gameCellArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,18 +28,18 @@ public class MainActivity extends AppCompatActivity {
 
         gameCreator();
 
-        GameAdapter gameAdapter = new GameAdapter(getApplicationContext(), gameImages);
+        GameAdapter gameAdapter = new GameAdapter(getApplicationContext(), gameCellArray);
         gameGrid.setAdapter(gameAdapter);
 
         gameGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if (gameImages.get(position).isLocked()) {
+                if (gameCellArray.get(position).isLocked()) {
                     //TODO show message that this level is lock!
-                } else if (!gameImages.get(position).isSolved()) {
+                } else if (!gameCellArray.get(position).isSolved()) {
                     //TODO open the puzzle for that picture.
                     Intent intent = new Intent(MainActivity.this, SelectedImageActivity.class);
-                    intent.putExtra("gameCellInfo", gameImages.get(position)); // put gameCellInfo in Intent
+                    intent.putExtra("gameCellInfo", gameCellArray.get(position)); // put gameCellInfo in Intent
                     startActivity(intent); // start Intent
                 }
             }
@@ -47,19 +48,16 @@ public class MainActivity extends AppCompatActivity {
 
     public void gameCreator() {
 
-        GameCell_info g_1 = new GameCell_info();
-        g_1.setImageID(R.drawable.carrot);
-        g_1.setSolution("ABCDEF");
-        g_1.setLocked(false);
-        g_1.setSolved(false);
-        g_1.setAlphabets(new AlphabetChar[]{new AlphabetChar('A'), new AlphabetChar('B'), new AlphabetChar('C'),
-                new AlphabetChar('D'), new AlphabetChar('E'), new AlphabetChar('F'), new AlphabetChar('G')});
+        InputStream streamIn = null;
+        try {
+            streamIn = getAssets().open("rebussPuzzle.marash");
+            ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
+            gameCellArray = (ArrayList<GameCell_info>) objectinputstream.readObject();
+            objectinputstream.close();
+            streamIn.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        gameImages.add(g_1);
-        gameImages.add(g_1);
-        gameImages.add(g_1);
-        gameImages.add(g_1);
-        gameImages.add(g_1);
-        gameImages.add(g_1);
     }
 }

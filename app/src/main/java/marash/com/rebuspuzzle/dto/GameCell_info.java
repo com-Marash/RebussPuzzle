@@ -1,33 +1,41 @@
-package marash.com.rebuspuzzle.main_page;
+package marash.com.rebuspuzzle.dto;
 
 import java.io.Serializable;
 
-import marash.com.rebuspuzzle.selected_image.AlphabetChar;
 
 /**
- * Created by Maedeh on 1/25/2017.
+ * Created by Maedeh on 2/16/2017.
  */
 
 public class GameCell_info implements Serializable {
 
-    private int imageID;
-    private String solution;
+    private String solution = "";
     private boolean isLocked, isSolved;
-    private AlphabetChar[] alphabets;
+    private char[] alphabets = {};
+    private int levelNumber;
+    private byte[] image;
 
-    public int getImageID() {
-        return imageID;
+
+    public byte[] getImage() {
+        return image;
     }
 
-    public void setImageID(int imageID) {
-        this.imageID = imageID;
+    public void setImage(byte[] image) {
+        this.image = image;
     }
 
-    public AlphabetChar[] getAlphabets() {
+    public int getLevelNumber() {
+        return levelNumber;
+    }
+
+    public void setLevelNumber(int levelNumber) {
+        this.levelNumber = levelNumber;
+    }
+
+    public char[] getAlphabets() {
         return alphabets;
     }
-
-    public void setAlphabets(AlphabetChar[] alphabets) {
+    public void setAlphabets(char[] alphabets) {
         this.alphabets = alphabets;
     }
 

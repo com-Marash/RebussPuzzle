@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
+
 import marash.com.rebuspuzzle.R;
 
 
@@ -13,19 +14,19 @@ import marash.com.rebuspuzzle.R;
  * Created by Maedeh on 1/27/2017.
  */
 
-public class CharacterAdapter extends BaseAdapter {
+public class AlphabetCharAdapter extends BaseAdapter {
 
-    private char[] chars;
+    private AlphabetChar[] alphabetCharList;
     private LayoutInflater inflater;
 
-    public CharacterAdapter(Context applicationContext, char[] chars) {
-        this.chars = chars;
+    public AlphabetCharAdapter(Context applicationContext, AlphabetChar[] alphabetCharList) {
+        this.alphabetCharList = alphabetCharList;
         inflater = (LayoutInflater.from(applicationContext));
     }
 
     @Override
     public int getCount() {
-        return chars.length;
+        return alphabetCharList.length;
     }
 
     @Override
@@ -44,11 +45,11 @@ public class CharacterAdapter extends BaseAdapter {
             view = inflater.inflate(R.layout.gridview_charachters, parent, false); // inflate the layout
         }
         ImageView iv = (ImageView) view.findViewById(R.id.simple_character); // get the reference of ImageView
-        if (chars[i] == ' ') {
+        if (alphabetCharList[i].getCharacter() == ' ') {
             iv.setVisibility(View.GONE);
         } else {
             iv.setVisibility(View.VISIBLE);
-            iv.setImageResource(GetIconID.getID(chars[i])); // set logo images
+            iv.setImageResource(GetIconID.getID(alphabetCharList[i].getCharacter())); // set logo images
         }
         return view;
     }

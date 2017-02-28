@@ -9,7 +9,8 @@ import android.widget.GridView;
 import android.widget.ImageView;
 
 import marash.com.rebuspuzzle.R;
-import marash.com.rebuspuzzle.main_page.GameCell_info;
+import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
+import marash.com.rebuspuzzle.dto.GameCell_info;
 
 /**
  * Created by Maedeh on 1/24/2017.
@@ -18,7 +19,8 @@ import marash.com.rebuspuzzle.main_page.GameCell_info;
 public class SelectedImageActivity extends AppCompatActivity {
 
     GameCell_info cellInfo;
-    AlphabetChar[] solutionChars, alphabetChars;
+    AlphabetChar[] solutionChars;
+    char[] alphabetChars;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,14 +31,12 @@ public class SelectedImageActivity extends AppCompatActivity {
 
     }
 
-
-
     private void gamePlaying() {
         ImageView selectedImage = (ImageView) findViewById(R.id.selectedImage); // init a ImageView
 
         cellInfo = (GameCell_info) getIntent().getSerializableExtra("gameCellInfo"); // get Intent which we set from Previous Activity
 
-        selectedImage.setImageResource(cellInfo.getImageID()); // get image from Intent and set it in ImageView
+        selectedImage.setImageBitmap(ImageByteToBitmap.convert(cellInfo.getImage())); // get image from Intent and set it in ImageView
 
         GridView solutionGrid = (GridView) findViewById(R.id.sol_1);
 
@@ -50,9 +50,10 @@ public class SelectedImageActivity extends AppCompatActivity {
             } else {
                 solutionChars[i] = new AlphabetChar(' ', -1);
             }
+            solutionChars[i].setLocation(-1);
             i++;
         }
-        final CharacterAdapter solutionCharAdapter = new CharacterAdapter(getApplicationContext(), solutionChars);
+        final AlphabetCharAdapter solutionCharAdapter = new AlphabetCharAdapter(getApplicationContext(), solutionChars);
         solutionGrid.setAdapter(solutionCharAdapter);
         GridView charGrid = (GridView) findViewById(R.id.characters);
         final CharacterAdapter charAdapter = new CharacterAdapter(getApplicationContext(), alphabetChars);
@@ -61,13 +62,13 @@ public class SelectedImageActivity extends AppCompatActivity {
         solutionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                AlphabetChar clickedElement = solutionChars[position];
-                if (clickedElement.getCharacter() == '#' || clickedElement.getCharacter() == ' ') {
+                char clickedElement = solutionChars[position].getCharacter();
+                if (clickedElement == '#' || clickedElement == ' ') {
                     return;
                 }
-                alphabetChars[clickedElement.getLocation()].setCharacter(clickedElement.getCharacter());
-                clickedElement.setCharacter('#');
-                clickedElement.setLocation(-1);
+                alphabetChars[solutionChars[position].getLocation()] = clickedElement;
+                solutionChars[position].setCharacter('#');
+                solutionChars[position].setLocation(-1);
                 solutionCharAdapter.notifyDataSetChanged();
                 charAdapter.notifyDataSetChanged();
 
@@ -76,17 +77,16 @@ public class SelectedImageActivity extends AppCompatActivity {
         charGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                AlphabetChar clickedElement = alphabetChars[position];
-                if (clickedElement.getCharacter() == '#') {
+                if (alphabetChars[position] == '#') {
                     return;
                 }
                 int availablePosition = getAvailablePosition();
                 if (availablePosition == -1) {
                     return;
                 }
-                solutionChars[availablePosition].setCharacter(clickedElement.getCharacter());
+                solutionChars[availablePosition].setCharacter(alphabetChars[position]);
                 solutionChars[availablePosition].setLocation(position);
-                clickedElement.setCharacter('#');
+                alphabetChars[position] = '#';
                 solutionCharAdapter.notifyDataSetChanged();
                 charAdapter.notifyDataSetChanged();
                 //checking win condition.
@@ -97,13 +97,14 @@ public class SelectedImageActivity extends AppCompatActivity {
 
     private void checkWinCondition() {
 
-        if(getAvailablePosition() == -1){
+        if (getAvailablePosition() == -1) {
             String s = "";
-            for(int i = 0; i < solutionChars.length; i++){
+            for (int i = 0; i < solutionChars.length; i++) {
                 s = s + solutionChars[i].getCharacter();
             }
-            if(s.equals(cellInfo.getSolution())){
+            if (s.equals(cellInfo.getSolution())) {
                 Intent intent = new Intent(SelectedImageActivity.this, WinTransitionActivity.class);
+                intent.putExtra("nextLevelPosition", (cellInfo.getLevelNumber() + 1));
                 startActivity(intent);
             }
         }
