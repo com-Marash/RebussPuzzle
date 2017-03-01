@@ -9,7 +9,9 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import marash.com.rebuspuzzle.R;
 import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
+import marash.com.rebuspuzzle.dto.DataBaseCreator;
 import marash.com.rebuspuzzle.dto.GameCell_info;
+import marash.com.rebuspuzzle.main_page.MainActivity;
 
 /**
  * Created by Maedeh on 1/24/2017.
@@ -102,9 +104,17 @@ public class SelectedImageActivity extends AppCompatActivity {
                 s = s + a.getCharacter();
             }
             if (s.equals(cellInfo.getSolution())) {
-                Intent intent = new Intent(SelectedImageActivity.this, WinTransitionActivity.class);
-                intent.putExtra("nextLevelPosition", (cellInfo.getLevelNumber() + 1));
-                startActivity(intent);
+                //TODO make next level unlock
+                cellInfo.setSolved(true);
+
+                if(cellInfo.getLevelNumber() < DataBaseCreator.gameCellArray.size()) {
+                    DataBaseCreator.gameCellArray.get(cellInfo.getLevelNumber()).setLocked(false);
+                    Intent intent = new Intent(SelectedImageActivity.this, WinTransitionActivity.class);
+                    intent.putExtra("nextLevelPosition", (cellInfo.getLevelNumber() + 1));
+                    startActivity(intent);
+                }else{
+                    //TODO Game finished for All levels.
+                }
             }
         }
 
@@ -119,4 +129,11 @@ public class SelectedImageActivity extends AppCompatActivity {
         return -1;
     }
 
+
+    @Override
+    public void onBackPressed(){
+        Intent intent = new Intent(SelectedImageActivity.this, MainActivity.class );
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
 }
