@@ -7,26 +7,20 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import java.io.InputStream;
-import java.io.ObjectInputStream;
-import java.util.ArrayList;
-
 import marash.com.rebuspuzzle.R;
-import marash.com.rebuspuzzle.dto.GameCell_info;
 import marash.com.rebuspuzzle.selected_image.SelectedImageActivity;
+
+import static marash.com.rebuspuzzle.dto.DataBaseCreator.gameCellArray;
 
 public class MainActivity extends AppCompatActivity {
 
     GridView gameGrid;
-    public static ArrayList<GameCell_info> gameCellArray = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         gameGrid = (GridView) findViewById(R.id.gameGridView);
-
-        gameCreator();
 
         GameAdapter gameAdapter = new GameAdapter(getApplicationContext(), gameCellArray);
         gameGrid.setAdapter(gameAdapter);
@@ -44,20 +38,5 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-    }
-
-    public void gameCreator() {
-
-        InputStream streamIn = null;
-        try {
-            streamIn = getAssets().open("rebussPuzzle.marash");
-            ObjectInputStream objectinputstream = new ObjectInputStream(streamIn);
-            gameCellArray = (ArrayList<GameCell_info>) objectinputstream.readObject();
-            objectinputstream.close();
-            streamIn.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
     }
 }
