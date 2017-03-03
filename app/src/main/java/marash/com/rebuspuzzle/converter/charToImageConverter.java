@@ -6,7 +6,7 @@ import marash.com.rebuspuzzle.R;
  * Created by Maedeh on 1/31/2017.
  */
 
-public class charToImageConverter {
+public class CharToImageConverter {
 
     public static int getID(char myChar){
 

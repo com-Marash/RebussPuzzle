@@ -7,9 +7,10 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+
+import marash.com.rebuspuzzle.AppClass;
 import marash.com.rebuspuzzle.R;
 import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
-import marash.com.rebuspuzzle.AppClass;
 import marash.com.rebuspuzzle.dto.AlphabetChar;
 import marash.com.rebuspuzzle.dto.GameCellInfo;
 import marash.com.rebuspuzzle.dto.GameProgress;
@@ -19,7 +20,7 @@ import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
  * Created by Maedeh on 1/24/2017.
  */
 
-public class SelectedImageActivity extends AppCompatActivity {
+public class GamePageActivity extends AppCompatActivity {
 
     GameCellInfo cellInfo;
     GameProgress gameProgress;
@@ -104,19 +105,19 @@ public class SelectedImageActivity extends AppCompatActivity {
 
         if (getAvailablePosition() == -1) {
             String s = "";
-            for (AlphabetChar a:solutionChars) {
+            for (AlphabetChar a : solutionChars) {
                 s = s + a.getCharacter();
             }
             if (s.equals(cellInfo.getSolution())) {
                 //TODO make next level unlock
                 gameProgress.setSolved(true);
 
-                if(cellInfo.getLevelNumber() < AppClass.gameCellArray.size()) {
+                if (cellInfo.getLevelNumber() < AppClass.gameCellArray.size()) {
                     AppClass.gameProgresses.get(cellInfo.getLevelNumber()).setLocked(false);
-                    Intent intent = new Intent(SelectedImageActivity.this, WinTransitionActivity.class);
+                    Intent intent = new Intent(GamePageActivity.this, WinTransitionActivity.class);
                     intent.putExtra("nextLevelPosition", (cellInfo.getLevelNumber() + 1));
                     startActivity(intent);
-                }else{
+                } else {
                     //TODO Game finished for All levels.
                 }
             }
@@ -135,8 +136,8 @@ public class SelectedImageActivity extends AppCompatActivity {
 
 
     @Override
-    public void onBackPressed(){
-        Intent intent = new Intent(SelectedImageActivity.this, MainActivity.class );
+    public void onBackPressed() {
+        Intent intent = new Intent(GamePageActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);
     }

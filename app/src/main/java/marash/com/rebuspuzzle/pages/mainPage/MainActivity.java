@@ -14,7 +14,7 @@ import java.io.FileOutputStream;
 import java.io.ObjectOutputStream;
 
 import marash.com.rebuspuzzle.R;
-import marash.com.rebuspuzzle.pages.gamePage.SelectedImageActivity;
+import marash.com.rebuspuzzle.pages.gamePage.GamePageActivity;
 
 import static marash.com.rebuspuzzle.AppClass.gameCellArray;
 import static marash.com.rebuspuzzle.AppClass.gameProgresses;
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
                 if (gameProgresses.get(position).isLocked()) {
                     //TODO show message that this level is lock!
                 } else if (!gameProgresses.get(position).isSolved()) {
-                    Intent intent = new Intent(MainActivity.this, SelectedImageActivity.class);
+                    Intent intent = new Intent(MainActivity.this, GamePageActivity.class);
                     intent.putExtra("gameCellInfo", gameCellArray.get(position)); // put gameCellInfo in Intent
                     startActivity(intent); // start Intent
                 }
