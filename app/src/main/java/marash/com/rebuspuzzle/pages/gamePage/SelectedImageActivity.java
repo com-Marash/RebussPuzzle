@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle.selected_image;
+package marash.com.rebuspuzzle.pages.gamePage;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -9,9 +9,11 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import marash.com.rebuspuzzle.R;
 import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
-import marash.com.rebuspuzzle.dto.DataBaseCreator;
-import marash.com.rebuspuzzle.dto.GameCell_info;
-import marash.com.rebuspuzzle.main_page.MainActivity;
+import marash.com.rebuspuzzle.AppClass;
+import marash.com.rebuspuzzle.dto.AlphabetChar;
+import marash.com.rebuspuzzle.dto.GameCellInfo;
+import marash.com.rebuspuzzle.dto.GameProgress;
+import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
 
 /**
  * Created by Maedeh on 1/24/2017.
@@ -19,7 +21,8 @@ import marash.com.rebuspuzzle.main_page.MainActivity;
 
 public class SelectedImageActivity extends AppCompatActivity {
 
-    GameCell_info cellInfo;
+    GameCellInfo cellInfo;
+    GameProgress gameProgress;
     AlphabetChar[] solutionChars;
     char[] alphabetChars;
 
@@ -35,7 +38,8 @@ public class SelectedImageActivity extends AppCompatActivity {
     private void gamePlaying() {
         ImageView selectedImage = (ImageView) findViewById(R.id.selectedImage); // init a ImageView
 
-        cellInfo = (GameCell_info) getIntent().getSerializableExtra("gameCellInfo"); // get Intent which we set from Previous Activity
+        cellInfo = (GameCellInfo) getIntent().getSerializableExtra("gameCellInfo"); // get Intent which we set from Previous Activity
+        gameProgress = new GameProgress();
 
         selectedImage.setImageBitmap(ImageByteToBitmap.convert(cellInfo.getImage())); // get image from Intent and set it in ImageView
 
@@ -105,10 +109,10 @@ public class SelectedImageActivity extends AppCompatActivity {
             }
             if (s.equals(cellInfo.getSolution())) {
                 //TODO make next level unlock
-                cellInfo.setSolved(true);
+                gameProgress.setSolved(true);
 
-                if(cellInfo.getLevelNumber() < DataBaseCreator.gameCellArray.size()) {
-                    DataBaseCreator.gameCellArray.get(cellInfo.getLevelNumber()).setLocked(false);
+                if(cellInfo.getLevelNumber() < AppClass.gameCellArray.size()) {
+                    AppClass.gameProgresses.get(cellInfo.getLevelNumber()).setLocked(false);
                     Intent intent = new Intent(SelectedImageActivity.this, WinTransitionActivity.class);
                     intent.putExtra("nextLevelPosition", (cellInfo.getLevelNumber() + 1));
                     startActivity(intent);

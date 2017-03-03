@@ -1,12 +1,12 @@
-package marash.com.rebuspuzzle.selected_image;
+package marash.com.rebuspuzzle.pages.gamePage;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import marash.com.rebuspuzzle.R;
-import marash.com.rebuspuzzle.dto.DataBaseCreator;
-import marash.com.rebuspuzzle.main_page.MainActivity;
+import marash.com.rebuspuzzle.AppClass;
+import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
 
 /**
  * Created by Maedeh on 2/3/2017.
@@ -27,9 +27,9 @@ public class WinTransitionActivity extends AppCompatActivity {
 
     public void NextLevelFunction(View view) {
         int nextLevelPosition = getIntent().getIntExtra("nextLevelPosition", -1);
-        if(nextLevelPosition <= DataBaseCreator.gameCellArray.size()) {
+        if(nextLevelPosition <= AppClass.gameCellArray.size()) {
             Intent intent = new Intent(WinTransitionActivity.this, SelectedImageActivity.class);
-            intent.putExtra("gameCellInfo", DataBaseCreator.gameCellArray.get(nextLevelPosition - 1));
+            intent.putExtra("gameCellInfo", AppClass.gameCellArray.get(nextLevelPosition - 1));
             startActivity(intent);
         }else {
             Intent intent = new Intent(WinTransitionActivity.this, MainActivity.class);

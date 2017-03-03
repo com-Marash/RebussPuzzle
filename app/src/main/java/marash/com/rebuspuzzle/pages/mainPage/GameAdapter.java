@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle.main_page;
+package marash.com.rebuspuzzle.pages.mainPage;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import marash.com.rebuspuzzle.R;
 import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
-import marash.com.rebuspuzzle.dto.GameCell_info;
+import marash.com.rebuspuzzle.dto.GameCellInfo;
 
 /**
  * Created by Maedeh on 1/24/2017.
@@ -19,10 +19,10 @@ import marash.com.rebuspuzzle.dto.GameCell_info;
 
 public class GameAdapter extends BaseAdapter {
 
-    private ArrayList<GameCell_info> logos;
+    private ArrayList<GameCellInfo> logos;
     private LayoutInflater inflater;
 
-    public GameAdapter(Context applicationContext, ArrayList<GameCell_info> logos) {
+    public GameAdapter(Context applicationContext, ArrayList<GameCellInfo> logos) {
         this.logos = logos;
         inflater = (LayoutInflater.from(applicationContext));
     }

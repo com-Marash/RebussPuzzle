@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle.selected_image;
+package marash.com.rebuspuzzle.dto;
 
 import java.io.Serializable;
 

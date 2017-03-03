@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle.selected_image;
+package marash.com.rebuspuzzle.converter;
 
 import marash.com.rebuspuzzle.R;
 
@@ -6,7 +6,7 @@ import marash.com.rebuspuzzle.R;
  * Created by Maedeh on 1/31/2017.
  */
 
-public class GetIconID{
+public class charToImageConverter {
 
     public static int getID(char myChar){
 

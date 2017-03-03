@@ -1,4 +1,4 @@
-package marash.com.rebuspuzzle.selected_image;
+package marash.com.rebuspuzzle.pages.gamePage;
 
 import android.content.Context;
 import android.view.LayoutInflater;
