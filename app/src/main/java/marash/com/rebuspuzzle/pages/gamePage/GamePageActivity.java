@@ -113,7 +113,7 @@ public class GamePageActivity extends AppCompatActivity {
                 gameProgress.setSolved(true);
 
                 if (cellInfo.getLevelNumber() < AppClass.gameCellArray.size()) {
-                    AppClass.gameProgresses.get(cellInfo.getLevelNumber()).setLocked(false);
+                    AppClass.gameProgressArray.get(cellInfo.getLevelNumber()).setLocked(false);
                     Intent intent = new Intent(GamePageActivity.this, WinTransitionActivity.class);
                     intent.putExtra("nextLevelPosition", (cellInfo.getLevelNumber() + 1));
                     startActivity(intent);

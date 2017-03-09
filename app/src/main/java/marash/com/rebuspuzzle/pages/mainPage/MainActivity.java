@@ -1,6 +1,5 @@
 package marash.com.rebuspuzzle.pages.mainPage;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -10,14 +9,11 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import java.io.FileOutputStream;
-import java.io.ObjectOutputStream;
-
 import marash.com.rebuspuzzle.R;
 import marash.com.rebuspuzzle.pages.gamePage.GamePageActivity;
 
 import static marash.com.rebuspuzzle.AppClass.gameCellArray;
-import static marash.com.rebuspuzzle.AppClass.gameProgresses;
+import static marash.com.rebuspuzzle.AppClass.gameProgressArray;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -35,9 +31,9 @@ public class MainActivity extends AppCompatActivity {
         gameGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if (gameProgresses.get(position).isLocked()) {
+                if (gameProgressArray.get(position).isLocked()) {
                     //TODO show message that this level is lock!
-                } else if (!gameProgresses.get(position).isSolved()) {
+                } else if (!gameProgressArray.get(position).isSolved()) {
                     Intent intent = new Intent(MainActivity.this, GamePageActivity.class);
                     intent.putExtra("gameCellInfo", gameCellArray.get(position)); // put gameCellInfo in Intent
                     startActivity(intent); // start Intent
@@ -55,16 +51,7 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage("Are you sure you want to Exit?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        FileOutputStream fout = null;
-                        try {
-                            fout = MainActivity.this.openFileOutput("gameProgress.marash", Context.MODE_PRIVATE);
-                            ObjectOutputStream oos = new ObjectOutputStream(fout);
-                            oos.writeObject(gameProgresses);
-                            oos.close();
-                            fout.close();
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                        }
+                        finish();
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {
