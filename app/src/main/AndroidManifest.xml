@@ -20,7 +20,7 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".pages.gamePage.SelectedImageActivity"
+        <activity android:name=".pages.gamePage.GamePageActivity"
             android:screenOrientation="portrait">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
@@ -35,7 +35,7 @@
             android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Translucent">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".pages.gamePage.SelectedImageActivity" />
+                android:value=".pages.gamePage.GamePageActivity" />
             <intent-filter>
                 <action android:name="com.marash.RebusPuzzle.WinTransitionActivity"/>
                 <category android:name="android.intent.category.DEFAULT" />
