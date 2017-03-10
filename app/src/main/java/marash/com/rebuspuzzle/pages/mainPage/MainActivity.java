@@ -35,8 +35,10 @@ public class MainActivity extends AppCompatActivity {
                     //TODO show message that this level is lock!
                 } else if (!gameProgressArray.get(position).isSolved()) {
                     Intent intent = new Intent(MainActivity.this, GamePageActivity.class);
-                    intent.putExtra("gameCellInfo", gameCellArray.get(position)); // put gameCellInfo in Intent
+                    intent.putExtra("gameCellLevelNumber", gameCellArray.get(position).getLevelNumber()); // put gameCellInfo in Intent
                     startActivity(intent); // start Intent
+                } else {    //TODO in yani ghablan hal karde yekbar, pas dge age baz hal kard emtiyaz(sekke) nabayad begire!
+
                 }
             }
         });

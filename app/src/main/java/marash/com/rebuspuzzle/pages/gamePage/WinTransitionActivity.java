@@ -4,8 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+
 import marash.com.rebuspuzzle.R;
-import marash.com.rebuspuzzle.AppClass;
 import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
 
 /**
@@ -26,15 +26,10 @@ public class WinTransitionActivity extends AppCompatActivity {
 
 
     public void NextLevelFunction(View view) {
-        int nextLevelPosition = getIntent().getIntExtra("nextLevelPosition", -1);
-        if(nextLevelPosition <= AppClass.gameCellArray.size()) {
-            Intent intent = new Intent(WinTransitionActivity.this, GamePageActivity.class);
-            intent.putExtra("gameCellInfo", AppClass.gameCellArray.get(nextLevelPosition - 1));
-            startActivity(intent);
-        }else {
-            Intent intent = new Intent(WinTransitionActivity.this, MainActivity.class);
-            startActivity(intent);
-        }
+        int nextLevelNumber = getIntent().getIntExtra("nextLevelNumber", -1);
+        Intent intent = new Intent(WinTransitionActivity.this, GamePageActivity.class);
+        intent.putExtra("gameCellLevelNumber", nextLevelNumber);
+        startActivity(intent);
     }
 
     @Override

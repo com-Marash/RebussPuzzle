@@ -8,7 +8,6 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import marash.com.rebuspuzzle.AppClass;
 import marash.com.rebuspuzzle.R;
 import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
 import marash.com.rebuspuzzle.dto.AlphabetChar;
@@ -16,16 +15,20 @@ import marash.com.rebuspuzzle.dto.GameCellInfo;
 import marash.com.rebuspuzzle.dto.GameProgress;
 import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
 
+import static marash.com.rebuspuzzle.AppClass.gameCellArray;
+import static marash.com.rebuspuzzle.AppClass.gameProgressArray;
+
 /**
  * Created by Maedeh on 1/24/2017.
  */
 
 public class GamePageActivity extends AppCompatActivity {
 
-    GameCellInfo cellInfo;
+    int levelNumber;
     GameProgress gameProgress;
     AlphabetChar[] solutionChars;
     char[] alphabetChars;
+    GameCellInfo currentCell;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,18 +42,19 @@ public class GamePageActivity extends AppCompatActivity {
     private void gamePlaying() {
         ImageView selectedImage = (ImageView) findViewById(R.id.selectedImage); // init a ImageView
 
-        cellInfo = (GameCellInfo) getIntent().getSerializableExtra("gameCellInfo"); // get Intent which we set from Previous Activity
+        levelNumber = (int) getIntent().getSerializableExtra("gameCellLevelNumber"); // get Intent which we set from Previous Activity
+        currentCell = gameCellArray.get(levelNumber-1);
         gameProgress = new GameProgress();
 
-        selectedImage.setImageBitmap(ImageByteToBitmap.convert(cellInfo.getImage())); // get image from Intent and set it in ImageView
+        selectedImage.setImageBitmap(ImageByteToBitmap.convert(currentCell.getImage())); // get image from Intent and set it in ImageView
 
         GridView solutionGrid = (GridView) findViewById(R.id.sol_1);
 
-        solutionChars = new AlphabetChar[cellInfo.getSolution().length()];
-        alphabetChars = cellInfo.getAlphabets().clone();
+        solutionChars = new AlphabetChar[currentCell.getSolution().length()];
+        alphabetChars = currentCell.getAlphabets().clone();
 
         int i = 0;
-        for (char ch : cellInfo.getSolution().toCharArray()) {
+        for (char ch : currentCell.getSolution().toCharArray()) {
             if (ch != ' ') {
                 solutionChars[i] = new AlphabetChar('#', -1);
             } else {
@@ -108,14 +112,14 @@ public class GamePageActivity extends AppCompatActivity {
             for (AlphabetChar a : solutionChars) {
                 s = s + a.getCharacter();
             }
-            if (s.equals(cellInfo.getSolution())) {
+            if (s.equals(currentCell.getSolution())) {
                 //TODO make next level unlock
-                gameProgress.setSolved(true);
+                gameProgressArray.get(levelNumber-1).setSolved(true);
 
-                if (cellInfo.getLevelNumber() < AppClass.gameCellArray.size()) {
-                    AppClass.gameProgressArray.get(cellInfo.getLevelNumber()).setLocked(false);
+                if (levelNumber < gameCellArray.size()) {
+                    gameProgressArray.get(levelNumber).setLocked(false);
                     Intent intent = new Intent(GamePageActivity.this, WinTransitionActivity.class);
-                    intent.putExtra("nextLevelPosition", (cellInfo.getLevelNumber() + 1));
+                    intent.putExtra("nextLevelNumber", (levelNumber + 1));
                     startActivity(intent);
                 } else {
                     //TODO Game finished for All levels.
