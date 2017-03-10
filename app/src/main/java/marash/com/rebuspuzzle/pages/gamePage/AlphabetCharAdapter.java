@@ -51,7 +51,7 @@ public class AlphabetCharAdapter extends BaseAdapter {
             iv.setVisibility(View.GONE);
         } else {
             iv.setVisibility(View.VISIBLE);
-            iv.setImageResource(CharToImageConverter.getID(alphabetCharList[i].getCharacter())); // set logo images
+            iv.setImageResource(CharToImageConverter.getID(alphabetCharList[i].getCharacter(), view)); // set logo images
         }
         return view;
     }

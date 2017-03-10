@@ -50,7 +50,7 @@ public class CharacterAdapter extends BaseAdapter {
             iv.setVisibility(View.GONE);
         } else {
             iv.setVisibility(View.VISIBLE);
-            iv.setImageResource(CharToImageConverter.getID(chars[i])); // set logo images
+            iv.setImageResource(CharToImageConverter.getID(chars[i] , view)); // set logo images
         }
         return view;
     }

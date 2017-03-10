@@ -1,5 +1,7 @@
 package marash.com.rebuspuzzle.converter;
 
+import android.view.View;
+
 import marash.com.rebuspuzzle.R;
 
 /**
@@ -8,25 +10,16 @@ import marash.com.rebuspuzzle.R;
 
 public class CharToImageConverter {
 
-    public static int getID(char myChar){
+    public static int getID(char myChar, View view) {
+        myChar = Character.toLowerCase(myChar);
 
-        switch (myChar){
+        int resID = view.getResources().getIdentifier("icon_" + myChar, "drawable", view.getContext().getPackageName());
+        if (resID != 0) {
+            return resID;
+        }
+        switch (myChar) {
             case '#':
                 return R.drawable.empty_letter;
-            case 'A':
-                return R.drawable.icon_a;
-            case 'B':
-                return R.drawable.icon_b;
-            case 'C':
-                return R.drawable.icon_c;
-            case 'D':
-                return R.drawable.icon_d;
-            case 'E':
-                return R.drawable.icon_e;
-            case 'F':
-                return R.drawable.icon_f;
-            case 'G':
-                return R.drawable.icon_g;
             default:
                 return -1;
         }

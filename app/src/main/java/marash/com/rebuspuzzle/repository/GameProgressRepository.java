@@ -26,7 +26,7 @@ public class GameProgressRepository {
         try {
             fIn = context.openFileInput("gameProgress.marash");
             ObjectInputStream ois = new ObjectInputStream(fIn);
-            gameProgressArray.add((GameProgress) ois.readObject());
+            gameProgressArray = (ArrayList<GameProgress>) ois.readObject();
             ois.close();
             fIn.close();
         } catch (Exception e) {       //For the first when file is not available, it creates it.
@@ -37,16 +37,16 @@ public class GameProgressRepository {
                 GameProgress gp = new GameProgress();
                 gp.setLocked(false);
                 gp.setSolved(false);
-                oos.writeObject(gp);
                 gameProgressArray.add(gp);
 
                 for(int i = 1; i < gameCellArray.size(); i++){
                     gp = new GameProgress();
                     gp.setLocked(true);
                     gp.setSolved(false);
-                    oos.writeObject(gp);
                     gameProgressArray.add(gp);
                 }
+                oos.writeObject(gameProgressArray);
+                oos.close();
 
             } catch (Exception e1) {
                 e1.printStackTrace();
