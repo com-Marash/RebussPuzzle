@@ -19,6 +19,7 @@ import static marash.com.rebuspuzzle.AppClass.gameCellArray;
 public class GameProgressRepository {
 
     public static ArrayList<GameProgress> gameProgressArray = new ArrayList<>();
+    public static int userMoney;
 
     public static ArrayList<GameProgress> loadGameProgressArray(Context context) {
 
