@@ -9,7 +9,7 @@ import marash.com.rebuspuzzle.dto.GameCellInfo;
 import marash.com.rebuspuzzle.dto.GameProgress;
 import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
 import marash.com.rebuspuzzle.repository.GameCellInfoRepository;
-import marash.com.rebuspuzzle.repository.GameProgressRepository;
+import marash.com.rebuspuzzle.repository.PlayerProgressRepository;
 
 import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
@@ -32,7 +32,7 @@ public class AppClass extends Application {
 
         gameCellArray = GameCellInfoRepository.loadGameCellArray(getAssets());
 
-        gameProgressArray = GameProgressRepository.loadGameProgressArray(this);
+        gameProgressArray = PlayerProgressRepository.loadPlayerProgress(this);
 
         super.onCreate();
         Intent intent = new Intent(AppClass.this, MainActivity.class);

@@ -9,6 +9,7 @@ import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
 import marash.com.rebuspuzzle.dto.GameProgress;
+import marash.com.rebuspuzzle.dto.PlayerProgress;
 
 import static marash.com.rebuspuzzle.AppClass.gameCellArray;
 
@@ -16,24 +17,26 @@ import static marash.com.rebuspuzzle.AppClass.gameCellArray;
  * Created by Maedeh on 3/2/2017.
  */
 
-public class GameProgressRepository {
+public class PlayerProgressRepository {
 
-    public static ArrayList<GameProgress> gameProgressArray = new ArrayList<>();
-    public static int userMoney;
 
-    public static ArrayList<GameProgress> loadGameProgressArray(Context context) {
+
+    public static PlayerProgress loadPlayerProgress(Context context) {
 
         FileInputStream fIn = null;
+        PlayerProgress playerProgress = null;
+
         try {
-            fIn = context.openFileInput("gameProgress.marash");
+            fIn = context.openFileInput("PlayerProgress.marash");
             ObjectInputStream ois = new ObjectInputStream(fIn);
-            gameProgressArray = (ArrayList<GameProgress>) ois.readObject();
+            playerProgress = (PlayerProgress) ois.readObject();
             ois.close();
             fIn.close();
         } catch (Exception e) {       //For the first when file is not available, it creates it.
             try {
-                FileOutputStream fOut = context.openFileOutput("gameProgress.marash", Context.MODE_PRIVATE);
-                ObjectOutputStream oos = new ObjectOutputStream(fOut);
+                ArrayList<GameProgress> gameProgressArray = new ArrayList<>();
+                playerProgress = new PlayerProgress();
+                playerProgress.setGameProgressArray(gameProgressArray);
 
                 GameProgress gp = new GameProgress();
                 gp.setLocked(false);
@@ -46,7 +49,9 @@ public class GameProgressRepository {
                     gp.setSolved(false);
                     gameProgressArray.add(gp);
                 }
-                oos.writeObject(gameProgressArray);
+                FileOutputStream fOut = context.openFileOutput("PlayerProgress.marash", Context.MODE_PRIVATE);
+                ObjectOutputStream oos = new ObjectOutputStream(fOut);
+                oos.writeObject(playerProgress);
                 oos.close();
 
             } catch (Exception e1) {
@@ -54,7 +59,6 @@ public class GameProgressRepository {
             }
 
         }
-
-        return gameProgressArray;
+        return playerProgress;
     }
 }

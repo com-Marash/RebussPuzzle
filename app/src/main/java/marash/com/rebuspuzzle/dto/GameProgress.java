@@ -1,12 +1,10 @@
 package marash.com.rebuspuzzle.dto;
 
-import java.io.Serializable;
-
 /**
  * Created by Maedeh on 3/2/2017.
  */
 
-public class GameProgress implements Serializable{
+public class GameProgress {
 
     private boolean isLocked,isSolved;
 
