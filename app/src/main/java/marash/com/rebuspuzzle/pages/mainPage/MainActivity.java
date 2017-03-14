@@ -9,15 +9,19 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
+import java.util.ArrayList;
+
+import marash.com.rebuspuzzle.AppClass;
 import marash.com.rebuspuzzle.R;
+import marash.com.rebuspuzzle.dto.GameProgress;
 import marash.com.rebuspuzzle.pages.gamePage.GamePageActivity;
 
 import static marash.com.rebuspuzzle.AppClass.gameCellArray;
-import static marash.com.rebuspuzzle.AppClass.gameProgressArray;
 
 public class MainActivity extends AppCompatActivity {
 
     GridView gameGrid;
+    ArrayList<GameProgress> gameProgressArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +31,8 @@ public class MainActivity extends AppCompatActivity {
 
         GameAdapter gameAdapter = new GameAdapter(getApplicationContext(), gameCellArray);
         gameGrid.setAdapter(gameAdapter);
+
+        gameProgressArray = AppClass.playerProgress.gameProgressArray;
 
         gameGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -46,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     @Override
-    public void onBackPressed(){
+    public void onBackPressed() {
 
         new AlertDialog.Builder(MainActivity.this)
                 .setTitle("Exit")

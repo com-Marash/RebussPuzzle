@@ -8,6 +8,9 @@ import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
 
+import java.util.ArrayList;
+
+import marash.com.rebuspuzzle.AppClass;
 import marash.com.rebuspuzzle.R;
 import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
 import marash.com.rebuspuzzle.dto.AlphabetChar;
@@ -16,7 +19,6 @@ import marash.com.rebuspuzzle.dto.GameProgress;
 import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
 
 import static marash.com.rebuspuzzle.AppClass.gameCellArray;
-import static marash.com.rebuspuzzle.AppClass.gameProgressArray;
 
 /**
  * Created by Maedeh on 1/24/2017.
@@ -29,6 +31,7 @@ public class GamePageActivity extends AppCompatActivity {
     AlphabetChar[] solutionChars;
     char[] alphabetChars;
     GameCellInfo currentCell;
+    ArrayList<GameProgress> gameProgressArray = AppClass.playerProgress.gameProgressArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +46,7 @@ public class GamePageActivity extends AppCompatActivity {
         ImageView selectedImage = (ImageView) findViewById(R.id.selectedImage); // init a ImageView
 
         levelNumber = (int) getIntent().getSerializableExtra("gameCellLevelNumber"); // get Intent which we set from Previous Activity
-        currentCell = gameCellArray.get(levelNumber-1);
-        gameProgress = new GameProgress();
+        currentCell = gameCellArray.get(levelNumber - 1);
 
         selectedImage.setImageBitmap(ImageByteToBitmap.convert(currentCell.getImage())); // get image from Intent and set it in ImageView
 
@@ -114,7 +116,7 @@ public class GamePageActivity extends AppCompatActivity {
             }
             if (s.equals(currentCell.getSolution())) {
                 //TODO make next level unlock
-                gameProgressArray.get(levelNumber-1).setSolved(true);
+                gameProgressArray.get(levelNumber - 1).setSolved(true);
 
                 if (levelNumber < gameCellArray.size()) {
                     gameProgressArray.get(levelNumber).setLocked(false);
