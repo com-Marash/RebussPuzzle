@@ -48,10 +48,6 @@ public class PlayerProgressRepository {
                     gp.setSolved(false);
                     gameProgressArray.add(gp);
                 }
-                FileOutputStream fOut = context.openFileOutput("PlayerProgress.marash", Context.MODE_PRIVATE);
-                ObjectOutputStream oos = new ObjectOutputStream(fOut);
-                oos.writeObject(playerProgress);
-                oos.close();
 
             } catch (Exception e1) {
                 e1.printStackTrace();
@@ -60,4 +56,19 @@ public class PlayerProgressRepository {
         }
         return playerProgress;
     }
+
+
+    public static void savePlayerProgress(Context context,PlayerProgress playerProgress) {
+        FileOutputStream fOut = null;
+        try {
+            fOut = context.openFileOutput("PlayerProgress.marash", Context.MODE_PRIVATE);
+            ObjectOutputStream oos = new ObjectOutputStream(fOut);
+            oos.writeObject(playerProgress);
+            oos.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
 }

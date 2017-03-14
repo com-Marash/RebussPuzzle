@@ -17,6 +17,7 @@ import marash.com.rebuspuzzle.dto.AlphabetChar;
 import marash.com.rebuspuzzle.dto.GameCellInfo;
 import marash.com.rebuspuzzle.dto.GameProgress;
 import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
+import marash.com.rebuspuzzle.repository.PlayerProgressRepository;
 
 import static marash.com.rebuspuzzle.AppClass.gameCellArray;
 import static marash.com.rebuspuzzle.AppClass.playerProgress;
@@ -124,6 +125,8 @@ public class GamePageActivity extends AppCompatActivity {
                 if(!gameProgressArray.get(levelNumber - 1).isSolved()){
                     gameProgressArray.get(levelNumber - 1).setSolved(true);
                     playerProgress.userMoney += 100;
+                    //TODO benevis tuye file
+                    PlayerProgressRepository.savePlayerProgress(this,playerProgress);
                 }
 
                 if (levelNumber < gameCellArray.size()) {
