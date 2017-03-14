@@ -22,29 +22,30 @@ public class MainActivity extends AppCompatActivity {
 
     GridView gameGrid;
     ArrayList<GameProgress> gameProgressArray;
+    boolean isLoaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        gameGrid = (GridView) findViewById(R.id.gameGridView);
 
-        GameAdapter gameAdapter = new GameAdapter(getApplicationContext(), gameCellArray);
-        gameGrid.setAdapter(gameAdapter);
+        if(!isLoaded) {
+            gameGrid = (GridView) findViewById(R.id.gameGridView);
+            GameAdapter gameAdapter = new GameAdapter(getApplicationContext(), gameCellArray);
+            gameGrid.setAdapter(gameAdapter);
 
-        gameProgressArray = AppClass.playerProgress.gameProgressArray;
+            gameProgressArray = AppClass.playerProgress.gameProgressArray;
+        }
 
         gameGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
                 if (gameProgressArray.get(position).isLocked()) {
                     //TODO show message that this level is lock!
-                } else if (!gameProgressArray.get(position).isSolved()) {
+                } else {
                     Intent intent = new Intent(MainActivity.this, GamePageActivity.class);
                     intent.putExtra("gameCellLevelNumber", gameCellArray.get(position).getLevelNumber()); // put gameCellInfo in Intent
                     startActivity(intent); // start Intent
-                } else {    //TODO in yani ghablan hal karde yekbar, pas dge age baz hal kard emtiyaz(sekke) nabayad begire!
-
                 }
             }
         });

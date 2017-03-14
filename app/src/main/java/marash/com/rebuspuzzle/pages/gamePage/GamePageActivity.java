@@ -19,6 +19,7 @@ import marash.com.rebuspuzzle.dto.GameProgress;
 import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
 
 import static marash.com.rebuspuzzle.AppClass.gameCellArray;
+import static marash.com.rebuspuzzle.AppClass.playerProgress;
 
 /**
  * Created by Maedeh on 1/24/2017.
@@ -32,6 +33,7 @@ public class GamePageActivity extends AppCompatActivity {
     char[] alphabetChars;
     GameCellInfo currentCell;
     ArrayList<GameProgress> gameProgressArray = AppClass.playerProgress.gameProgressArray;
+    boolean isLoaded = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,68 +45,71 @@ public class GamePageActivity extends AppCompatActivity {
     }
 
     private void gamePlaying() {
-        ImageView selectedImage = (ImageView) findViewById(R.id.selectedImage); // init a ImageView
 
-        levelNumber = (int) getIntent().getSerializableExtra("gameCellLevelNumber"); // get Intent which we set from Previous Activity
-        currentCell = gameCellArray.get(levelNumber - 1);
+        if(!isLoaded) {
+            ImageView selectedImage = (ImageView) findViewById(R.id.selectedImage); // init a ImageView
 
-        selectedImage.setImageBitmap(ImageByteToBitmap.convert(currentCell.getImage())); // get image from Intent and set it in ImageView
+            levelNumber = (int) getIntent().getSerializableExtra("gameCellLevelNumber"); // get Intent which we set from Previous Activity
+            currentCell = gameCellArray.get(levelNumber - 1);
 
-        GridView solutionGrid = (GridView) findViewById(R.id.sol_1);
+            selectedImage.setImageBitmap(ImageByteToBitmap.convert(currentCell.getImage())); // get image from Intent and set it in ImageView
 
-        solutionChars = new AlphabetChar[currentCell.getSolution().length()];
-        alphabetChars = currentCell.getAlphabets().clone();
+            GridView solutionGrid = (GridView) findViewById(R.id.sol_1);
 
-        int i = 0;
-        for (char ch : currentCell.getSolution().toCharArray()) {
-            if (ch != ' ') {
-                solutionChars[i] = new AlphabetChar('#', -1);
-            } else {
-                solutionChars[i] = new AlphabetChar(' ', -1);
+            solutionChars = new AlphabetChar[currentCell.getSolution().length()];
+            alphabetChars = currentCell.getAlphabets().clone();
+
+            int i = 0;
+            for (char ch : currentCell.getSolution().toCharArray()) {
+                if (ch != ' ') {
+                    solutionChars[i] = new AlphabetChar('#', -1);
+                } else {
+                    solutionChars[i] = new AlphabetChar(' ', -1);
+                }
+                solutionChars[i].setLocation(-1);
+                i++;
             }
-            solutionChars[i].setLocation(-1);
-            i++;
+            final AlphabetCharAdapter solutionCharAdapter = new AlphabetCharAdapter(getApplicationContext(), solutionChars);
+            solutionGrid.setAdapter(solutionCharAdapter);
+            GridView charGrid = (GridView) findViewById(R.id.characters);
+            final CharacterAdapter charAdapter = new CharacterAdapter(getApplicationContext(), alphabetChars);
+            charGrid.setAdapter(charAdapter);
+
+            solutionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    char clickedElement = solutionChars[position].getCharacter();
+                    if (clickedElement == '#' || clickedElement == ' ') {
+                        return;
+                    }
+                    alphabetChars[solutionChars[position].getLocation()] = clickedElement;
+                    solutionChars[position].setCharacter('#');
+                    solutionChars[position].setLocation(-1);
+                    solutionCharAdapter.notifyDataSetChanged();
+                    charAdapter.notifyDataSetChanged();
+
+                }
+            });
+            charGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                    if (alphabetChars[position] == '#') {
+                        return;
+                    }
+                    int availablePosition = getAvailablePosition();
+                    if (availablePosition == -1) {
+                        return;
+                    }
+                    solutionChars[availablePosition].setCharacter(alphabetChars[position]);
+                    solutionChars[availablePosition].setLocation(position);
+                    alphabetChars[position] = '#';
+                    solutionCharAdapter.notifyDataSetChanged();
+                    charAdapter.notifyDataSetChanged();
+                    //checking win condition.
+                    checkWinCondition();
+                }
+            });
         }
-        final AlphabetCharAdapter solutionCharAdapter = new AlphabetCharAdapter(getApplicationContext(), solutionChars);
-        solutionGrid.setAdapter(solutionCharAdapter);
-        GridView charGrid = (GridView) findViewById(R.id.characters);
-        final CharacterAdapter charAdapter = new CharacterAdapter(getApplicationContext(), alphabetChars);
-        charGrid.setAdapter(charAdapter);
-
-        solutionGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                char clickedElement = solutionChars[position].getCharacter();
-                if (clickedElement == '#' || clickedElement == ' ') {
-                    return;
-                }
-                alphabetChars[solutionChars[position].getLocation()] = clickedElement;
-                solutionChars[position].setCharacter('#');
-                solutionChars[position].setLocation(-1);
-                solutionCharAdapter.notifyDataSetChanged();
-                charAdapter.notifyDataSetChanged();
-
-            }
-        });
-        charGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
-                if (alphabetChars[position] == '#') {
-                    return;
-                }
-                int availablePosition = getAvailablePosition();
-                if (availablePosition == -1) {
-                    return;
-                }
-                solutionChars[availablePosition].setCharacter(alphabetChars[position]);
-                solutionChars[availablePosition].setLocation(position);
-                alphabetChars[position] = '#';
-                solutionCharAdapter.notifyDataSetChanged();
-                charAdapter.notifyDataSetChanged();
-                //checking win condition.
-                checkWinCondition();
-            }
-        });
     }
 
     private void checkWinCondition() {
@@ -115,8 +120,11 @@ public class GamePageActivity extends AppCompatActivity {
                 s = s + a.getCharacter();
             }
             if (s.equals(currentCell.getSolution())) {
-                //TODO make next level unlock
-                gameProgressArray.get(levelNumber - 1).setSolved(true);
+
+                if(!gameProgressArray.get(levelNumber - 1).isSolved()){
+                    gameProgressArray.get(levelNumber - 1).setSolved(true);
+                    playerProgress.userMoney += 100;
+                }
 
                 if (levelNumber < gameCellArray.size()) {
                     gameProgressArray.get(levelNumber).setLocked(false);

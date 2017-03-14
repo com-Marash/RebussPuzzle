@@ -20,7 +20,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 public class AppClass extends Application {
 
     public static ArrayList<GameCellInfo> gameCellArray = new ArrayList<>();
-    public static PlayerProgress playerProgress = new PlayerProgress();
+    public static PlayerProgress playerProgress;
 
     public AppClass() {
 

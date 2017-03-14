@@ -9,7 +9,12 @@ import java.util.ArrayList;
 
 public class PlayerProgress implements Serializable {
 
-    public ArrayList<GameProgress> gameProgressArray = new ArrayList<>();
-    public int userMoney = 1000;
+    public ArrayList<GameProgress> gameProgressArray;
+    public int userMoney;
+
+    public PlayerProgress(ArrayList<GameProgress> gameProgressArray){
+        this.gameProgressArray = gameProgressArray;
+        userMoney = 1000;
+    }
 
 }

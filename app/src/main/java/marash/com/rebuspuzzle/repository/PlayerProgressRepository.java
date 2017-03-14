@@ -35,8 +35,7 @@ public class PlayerProgressRepository {
         } catch (Exception e) {       //For the first when file is not available, it creates it.
             try {
                 ArrayList<GameProgress> gameProgressArray = new ArrayList<>();
-                playerProgress = new PlayerProgress();
-                playerProgress.setGameProgressArray(gameProgressArray);
+                playerProgress = new PlayerProgress(gameProgressArray);
 
                 GameProgress gp = new GameProgress();
                 gp.setLocked(false);
