@@ -34,12 +34,24 @@
         </activity>
 
         <activity android:name=".pages.gamePage.WinTransitionActivity"
-            android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.Translucent">
+            android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.winTransition">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".pages.gamePage.GamePageActivity" />
             <intent-filter>
                 <action android:name="com.marash.RebusPuzzle.WinTransitionActivity"/>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
+        <activity android:name=".pages.mainPage.CoinBankActivity"
+            android:screenOrientation="portrait" android:theme="@style/Theme.AppCompat.coinBank">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".pages.mainPage.MainActivity" />
+            <intent-filter>
+                <action android:name="com.marash.RebusPuzzle.CoinBankActivity"/>
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
 

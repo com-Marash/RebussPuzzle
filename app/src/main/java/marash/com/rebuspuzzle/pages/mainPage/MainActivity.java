@@ -2,12 +2,15 @@ package marash.com.rebuspuzzle.pages.mainPage;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -24,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
     ArrayList<GameProgress> gameProgressArray;
     boolean isLoaded = false;
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,7 +40,18 @@ public class MainActivity extends AppCompatActivity {
             gameGrid.setAdapter(gameAdapter);
 
             gameProgressArray = AppClass.playerProgress.gameProgressArray;
+
         }
+
+        ImageView img = (ImageView)findViewById(R.id.mainPageAnimation);
+        img.setBackgroundResource(R.drawable.garfield1);
+        // Get the background, which has been compiled to an AnimationDrawable object.
+        AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
+        // Start the animation (looped playback by default).
+        frameAnimation.start();
+
+        TextView userMoneyText = (TextView)findViewById(R.id.userMoney);
+        userMoneyText.setText("" + AppClass.playerProgress.userMoney);
 
         gameGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -68,5 +84,10 @@ public class MainActivity extends AppCompatActivity {
                         // do nothing
                     }
                 }).show();
+    }
+
+    public void coinBank(View view) {
+        Intent intent = new Intent(MainActivity.this,CoinBankActivity.class);
+        startActivity(intent);
     }
 }

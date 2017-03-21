@@ -36,6 +36,7 @@ public class GamePageActivity extends AppCompatActivity {
     ArrayList<GameProgress> gameProgressArray = AppClass.playerProgress.gameProgressArray;
     boolean isLoaded = false;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -125,7 +126,6 @@ public class GamePageActivity extends AppCompatActivity {
                 if(!gameProgressArray.get(levelNumber - 1).isSolved()){
                     gameProgressArray.get(levelNumber - 1).setSolved(true);
                     playerProgress.userMoney += 100;
-                    //TODO benevis tuye file
                     PlayerProgressRepository.savePlayerProgress(this,playerProgress);
                 }
 

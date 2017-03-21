@@ -8,16 +8,59 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
+    android:background="@android:color/holo_orange_light"
     tools:context=".pages.mainPage.MainActivity">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="30dp"
+        android:text="Rebuss Puzzle"
+        android:id="@+id/gameTitle"
+        android:textSize="20sp"
+        android:textColor="@android:color/holo_red_dark"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/gameTitle"
+        android:layout_marginStart="60dp"
+        android:src="@drawable/coin_box"
+        android:onClick="coinBank"
+        android:id="@+id/coinBankImage"/>
+
+    <TextView
+        android:id="@+id/userMoney"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toEndOf="@id/coinBankImage"
+        android:fontFamily="casual"
+        android:textColor="@android:color/black"
+        android:textSize="12sp"
+        android:textStyle="bold" />
 
     <GridView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_centerVertical="true"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
+        android:background="@android:color/holo_orange_dark"
+        android:layout_marginTop="40dp"
+        android:layout_marginBottom="40dp"
+        android:padding="5dp"
         android:numColumns="3"
         android:horizontalSpacing="12dp"
         android:verticalSpacing="12dp"
         android:listSelector="#831f1f"
-        android:id="@+id/gameGridView"/>
+        android:id="@+id/gameGridView"
+        android:layout_below="@id/gameTitle"/>
+
+    <ImageView
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:background="@android:color/white"
+        android:id="@+id/mainPageAnimation"
+        android:layout_gravity="center"
+        android:layout_below="@+id/gameGridView"
+        android:layout_alignParentStart="true" />
+
 </RelativeLayout>
