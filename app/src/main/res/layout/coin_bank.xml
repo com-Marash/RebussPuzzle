@@ -1,5 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/holo_blue_bright">
+
+    <TextView
+        android:id="@+id/shopText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_blue_dark"
+        android:padding="10dp"
+        android:text="Shop"
+        android:textColor="@android:color/holo_purple"
+        android:textSize="30sp"
+        android:textStyle="bold" />
+
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/shopText"
+        android:layout_marginTop="30dp">
+
+        <TableRow android:gravity="center" android:layout_margin="20dp">
+            <ImageView
+                android:layout_column="1"
+                android:id="@+id/smallCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/coin_pot" />
+            <Button
+                android:layout_column="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:text="0.99"
+                android:textSize="20sp"
+                android:padding="15dp"
+                android:id="@+id/smallCoinPrice"
+                android:onClick="buyCoin"/>
+        </TableRow>
+        <TableRow android:gravity="center" android:layout_margin="20dp">
+            <ImageView
+                android:layout_column="1"
+                android:id="@+id/mediumCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/coin_pot" />
+            <Button
+                android:layout_column="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:text="2.99"
+                android:textSize="20sp"
+                android:padding="15dp"
+                android:id="@+id/mediumCoinPrice"
+                android:onClick="buyCoin"/>
+        </TableRow>
+        <TableRow android:gravity="center" android:layout_margin="20dp">
+            <ImageView
+                android:layout_column="1"
+                android:id="@+id/largeCoin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/coin_pot" />
+            <Button
+                android:layout_column="2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="120dp"
+                android:text="4.99"
+                android:textSize="20sp"
+                android:padding="15dp"
+                android:id="@+id/largeCoinPrice"
+                android:onClick="buyCoin"/>
+        </TableRow>
+
+    </TableLayout>
 
 </RelativeLayout>
