@@ -2,14 +2,12 @@ package marash.com.rebuspuzzle.pages.mainPage;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
@@ -23,18 +21,18 @@ import static marash.com.rebuspuzzle.AppClass.gameCellArray;
 
 public class MainActivity extends AppCompatActivity {
 
+    private final int NUMBER_OF_GAMES_PER_PAGE = 9;
     GridView gameGrid;
     ArrayList<GameProgress> gameProgressArray;
     boolean isLoaded = false;
-
-
+    int pageNumber = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!isLoaded) {
+        if (!isLoaded) {
             gameGrid = (GridView) findViewById(R.id.gameGridView);
             GameAdapter gameAdapter = new GameAdapter(getApplicationContext(), gameCellArray);
             gameGrid.setAdapter(gameAdapter);
@@ -43,14 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        ImageView img = (ImageView)findViewById(R.id.mainPageAnimation);
-        img.setBackgroundResource(R.drawable.garfield1);
-        // Get the background, which has been compiled to an AnimationDrawable object.
-        AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-        // Start the animation (looped playback by default).
-        frameAnimation.start();
-
-        TextView userMoneyText = (TextView)findViewById(R.id.userMoney);
+        TextView userMoneyText = (TextView) findViewById(R.id.userMoney);
         userMoneyText.setText("" + AppClass.playerProgress.userMoney);
 
         gameGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -87,7 +78,22 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void coinBank(View view) {
-        Intent intent = new Intent(MainActivity.this,CoinBankActivity.class);
+        Intent intent = new Intent(MainActivity.this, CoinBankActivity.class);
         startActivity(intent);
+    }
+
+    public void WorldChange(View view) {
+        switch (view.getId()) {
+            case R.id.previousPage:
+                if (pageNumber == 1) {
+
+                } else {
+                    //TODO go to previous page
+                }
+                break;
+            case R.id.nextPage:
+
+                break;
+        }
     }
 }
