@@ -14,8 +14,9 @@ import marash.com.rebuspuzzle.AppClass;
 import marash.com.rebuspuzzle.R;
 import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
 import marash.com.rebuspuzzle.dto.AlphabetChar;
-import marash.com.rebuspuzzle.dto.GameCellInfo;
+import marash.com.rebuspuzzle.dto.GameCell_info;
 import marash.com.rebuspuzzle.dto.GameProgress;
+import marash.com.rebuspuzzle.pages.mainPage.CoinBankActivity;
 import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
 import marash.com.rebuspuzzle.repository.PlayerProgressRepository;
 
@@ -32,7 +33,7 @@ public class GamePageActivity extends AppCompatActivity {
     GameProgress gameProgress;
     AlphabetChar[] solutionChars;
     char[] alphabetChars;
-    GameCellInfo currentCell;
+    GameCell_info currentCell;
     ArrayList<GameProgress> gameProgressArray = AppClass.playerProgress.gameProgressArray;
     boolean isLoaded = false;
 
@@ -151,9 +152,19 @@ public class GamePageActivity extends AppCompatActivity {
         return -1;
     }
 
+    public void coinBank(View view) {
+        Intent intent = new Intent(GamePageActivity.this,CoinBankActivity.class);
+        startActivity(intent);
+    }
 
     @Override
     public void onBackPressed() {
+        Intent intent = new Intent(GamePageActivity.this, MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        startActivity(intent);
+    }
+
+    public void BackToHomePage(View view) {
         Intent intent = new Intent(GamePageActivity.this, MainActivity.class);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(intent);

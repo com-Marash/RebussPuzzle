@@ -5,7 +5,7 @@
 
     <ImageView
         android:id="@+id/simple_character"
-        android:layout_width="45dp"
+        android:layout_width="match_parent"
         android:layout_height="45dp"
         android:scaleType="fitXY"
         android:layout_gravity="center_horizontal" />

@@ -8,7 +8,7 @@ import marash.com.rebuspuzzle.R;
  * Created by Maedeh on 1/31/2017.
  */
 
-public class CharToImageConverter {
+public class charToImageConverter {
 
     public static int getID(char myChar, View view) {
         myChar = Character.toLowerCase(myChar);

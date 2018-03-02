@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        if(!isLoaded) {
+        if (!isLoaded) {
             gameGrid = (GridView) findViewById(R.id.gameGridView);
             GameAdapter gameAdapter = new GameAdapter(getApplicationContext(), gameCellArray);
             gameGrid.setAdapter(gameAdapter);
@@ -43,14 +43,14 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        ImageView img = (ImageView)findViewById(R.id.mainPageAnimation);
+        ImageView img = (ImageView) findViewById(R.id.mainPageAnimation);
         img.setBackgroundResource(R.drawable.garfield1);
         // Get the background, which has been compiled to an AnimationDrawable object.
         AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
         // Start the animation (looped playback by default).
         frameAnimation.start();
 
-        TextView userMoneyText = (TextView)findViewById(R.id.userMoney);
+        TextView userMoneyText = (TextView) findViewById(R.id.userMoney);
         userMoneyText.setText("" + AppClass.playerProgress.userMoney);
 
         gameGrid.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -76,7 +76,10 @@ public class MainActivity extends AppCompatActivity {
                 .setMessage("Are you sure you want to Exit?")
                 .setPositiveButton(android.R.string.yes, new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int which) {
-                        finish();
+                        Intent intent = new Intent(Intent.ACTION_MAIN);
+                        intent.addCategory(Intent.CATEGORY_HOME);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(intent);
                     }
                 })
                 .setNegativeButton(android.R.string.no, new DialogInterface.OnClickListener() {

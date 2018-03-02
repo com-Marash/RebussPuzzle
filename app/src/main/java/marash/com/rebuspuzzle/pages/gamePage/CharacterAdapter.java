@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import marash.com.rebuspuzzle.R;
-import marash.com.rebuspuzzle.converter.CharToImageConverter;
+import marash.com.rebuspuzzle.converter.charToImageConverter;
 
 
 /**
@@ -50,7 +50,7 @@ public class CharacterAdapter extends BaseAdapter {
             iv.setVisibility(View.GONE);
         } else {
             iv.setVisibility(View.VISIBLE);
-            iv.setImageResource(CharToImageConverter.getID(chars[i] , view)); // set logo images
+            iv.setImageResource(charToImageConverter.getID(chars[i] , view)); // set logo images
         }
         return view;
     }

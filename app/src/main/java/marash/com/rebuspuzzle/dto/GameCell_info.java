@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by Maedeh on 2/16/2017.
  */
 
-public class GameCellInfo implements Serializable {
+public class GameCell_info implements Serializable {
 
     private String solution = "";
     private char[] alphabets = {};

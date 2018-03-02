@@ -19,8 +19,6 @@ import static marash.com.rebuspuzzle.AppClass.gameCellArray;
 
 public class PlayerProgressRepository {
 
-
-
     public static PlayerProgress loadPlayerProgress(Context context) {
 
         FileInputStream fIn = null;

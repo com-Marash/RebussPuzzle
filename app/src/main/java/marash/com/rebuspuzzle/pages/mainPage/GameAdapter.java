@@ -11,7 +11,7 @@ import java.util.ArrayList;
 
 import marash.com.rebuspuzzle.R;
 import marash.com.rebuspuzzle.converter.ImageByteToBitmap;
-import marash.com.rebuspuzzle.dto.GameCellInfo;
+import marash.com.rebuspuzzle.dto.GameCell_info;
 
 /**
  * Created by Maedeh on 1/24/2017.
@@ -19,10 +19,10 @@ import marash.com.rebuspuzzle.dto.GameCellInfo;
 
 public class GameAdapter extends BaseAdapter {
 
-    private ArrayList<GameCellInfo> logos;
+    private ArrayList<GameCell_info> logos;
     private LayoutInflater inflater;
 
-    public GameAdapter(Context applicationContext, ArrayList<GameCellInfo> logos) {
+    public GameAdapter(Context applicationContext, ArrayList<GameCell_info> logos) {
         this.logos = logos;
         inflater = (LayoutInflater.from(applicationContext));
     }

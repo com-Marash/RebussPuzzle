@@ -8,7 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 
 import marash.com.rebuspuzzle.R;
-import marash.com.rebuspuzzle.converter.CharToImageConverter;
+import marash.com.rebuspuzzle.converter.charToImageConverter;
 import marash.com.rebuspuzzle.dto.AlphabetChar;
 
 
@@ -51,7 +51,7 @@ public class AlphabetCharAdapter extends BaseAdapter {
             iv.setVisibility(View.GONE);
         } else {
             iv.setVisibility(View.VISIBLE);
-            iv.setImageResource(CharToImageConverter.getID(alphabetCharList[i].getCharacter(), view)); // set logo images
+            iv.setImageResource(charToImageConverter.getID(alphabetCharList[i].getCharacter(), view)); // set logo images
         }
         return view;
     }

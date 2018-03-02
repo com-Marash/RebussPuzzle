@@ -5,7 +5,7 @@ import android.content.Intent;
 
 import java.util.ArrayList;
 
-import marash.com.rebuspuzzle.dto.GameCellInfo;
+import marash.com.rebuspuzzle.dto.GameCell_info;
 import marash.com.rebuspuzzle.dto.PlayerProgress;
 import marash.com.rebuspuzzle.pages.mainPage.MainActivity;
 import marash.com.rebuspuzzle.repository.GameCellInfoRepository;
@@ -19,7 +19,7 @@ import static android.content.Intent.FLAG_ACTIVITY_NEW_TASK;
 
 public class AppClass extends Application {
 
-    public static ArrayList<GameCellInfo> gameCellArray = new ArrayList<>();
+    public static ArrayList<GameCell_info> gameCellArray = new ArrayList<>();
     public static PlayerProgress playerProgress;
 
     public AppClass() {
@@ -28,8 +28,6 @@ public class AppClass extends Application {
 
     @Override
     public void onCreate() {
-
-
         gameCellArray = GameCellInfoRepository.loadGameCellArray(getAssets());
 
         playerProgress = PlayerProgressRepository.loadPlayerProgress(this);
