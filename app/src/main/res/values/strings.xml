@@ -2,4 +2,6 @@
     <string name="app_name">RebusPuzzle</string>
     <string name="BackToHome"><![CDATA[<]]></string>
     <string name="puzzle_solved">CORRECT!</string>
+    <string name="next">NEXT</string>
+    <string name="returnbutton">RETURN</string>
 </resources>
