@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://C:\Users\Maedeh\StudioProjects\RebussPuzzle\RebusPuzzle2.iml" filepath="C:\Users\Maedeh\StudioProjects\RebussPuzzle\RebusPuzzle2.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../Maedeh/StudioProjects/RebussPuzzle/RebusPuzzle2.iml" filepath="$PROJECT_DIR$/../../Maedeh/StudioProjects/RebussPuzzle/RebusPuzzle2.iml" />
       <module fileurl="file://$PROJECT_DIR$/RebussPuzzle.iml" filepath="$PROJECT_DIR$/RebussPuzzle.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
