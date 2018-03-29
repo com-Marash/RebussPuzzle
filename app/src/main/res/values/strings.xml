@@ -4,4 +4,5 @@
     <string name="puzzle_solved">CORRECT!</string>
     <string name="next">NEXT</string>
     <string name="returnbutton">RETURN</string>
+    <string name="winningCoins">10X</string>
 </resources>
