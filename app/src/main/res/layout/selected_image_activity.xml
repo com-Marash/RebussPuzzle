@@ -1,44 +1,57 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/colorPurple">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentTop="true">
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:orientation="horizontal">
 
         <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/BackToHome"
-            android:text="@string/BackToHome"
-            android:textSize="30sp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.20"
             android:layout_marginStart="20dp"
-            android:layout_centerVertical="true"
-            android:onClick="BackToHomePage"/>
+            android:onClick="BackToHomePage"
+            android:text="@string/BackToHome"
+            android:textColor="@color/colorGold"
+            android:textSize="30sp" />
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/levelNumber"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.40"
+            android:textColor="@color/colorGold"
+            android:textSize="30sp"/>
+
+        <TextView
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
-            android:id="@+id/levelNumber"/>
+            android:layout_weight="0.20"
+            android:id="@+id/numberOfCoins"
+            android:textSize="20sp"
+            android:textColor="@color/colorGold"
+            android:gravity="right"/>
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@id/levelNumber"
-            android:layout_marginStart="110dp"
-            android:src="@drawable/coin_box"
+            android:id="@+id/coinBankImage"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:layout_weight="0.20"
             android:onClick="coinBank"
-            android:layout_centerVertical="true"
-            android:id="@+id/coinBankImage"/>
+            android:src="@drawable/coin_box"
+            android:layout_gravity="start"
+            android:paddingTop="5dp"/>
 
 
-    </RelativeLayout>
+    </LinearLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -56,7 +69,7 @@
             android:layout_margin="15dp"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
-            android:layout_weight="0.40"
+            android:layout_weight="0.35"
             android:scaleType="fitXY" />
 
         <GridView
@@ -74,7 +87,7 @@
             android:id="@+id/characters"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.35"
+            android:layout_weight="0.30"
             android:layout_marginLeft="20dp"
             android:layout_marginRight="20dp"
             android:layout_marginTop="20dp"
@@ -83,5 +96,13 @@
             android:numColumns="auto_fit"
             android:verticalSpacing="4dp" />
 
+        <ImageButton
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.10"
+            android:id="@+id/helpButton"
+            android:src="@drawable/help2"/>
+
     </LinearLayout>
+
 </RelativeLayout>

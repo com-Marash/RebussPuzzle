@@ -7,6 +7,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -51,8 +52,13 @@ public class GamePageActivity extends AppCompatActivity {
 
         if(!isLoaded) {
             ImageView selectedImage = (ImageView) findViewById(R.id.selectedImage); // init a ImageView
+            TextView levelNumbertText = (TextView) findViewById(R.id.levelNumber);
+            TextView userCoins = (TextView) findViewById(R.id.numberOfCoins);
 
+            userCoins.setText(String.format("%s", String.valueOf(playerProgress.userMoney)));
             levelNumber = (int) getIntent().getSerializableExtra("gameCellLevelNumber"); // get Intent which we set from Previous Activity
+            levelNumbertText.setText( "LEVEL " + levelNumber );
+
             currentCell = gameCellArray.get(levelNumber - 1);
 
             selectedImage.setImageBitmap(ImageByteToBitmap.convert(currentCell.getImage())); // get image from Intent and set it in ImageView
