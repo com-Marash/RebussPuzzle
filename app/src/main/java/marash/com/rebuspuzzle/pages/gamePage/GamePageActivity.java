@@ -185,11 +185,7 @@ public class GamePageActivity extends AppCompatActivity {
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
-        builder.setView(R.layout.help_page).setTitle("Get Some Help").setNegativeButton("Back", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-            }
-        });
+        builder.setView(R.layout.help_page);
         builder.create();
         builder.show();
     }

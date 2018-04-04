@@ -5,6 +5,6 @@
     <string name="next">NEXT</string>
     <string name="returnbutton">RETURN</string>
     <string name="winningCoins">10X</string>
-    <string name="reveal_letters">REVEAL SOME LETTERS</string>
-    <string name="eliminate_letters">ELIMINate SOME LETTERS</string>
+    <string name="reveal_letters">REVEAL LETTERS</string>
+    <string name="eliminate_letters">ELIMINate LETTERS</string>
 </resources>

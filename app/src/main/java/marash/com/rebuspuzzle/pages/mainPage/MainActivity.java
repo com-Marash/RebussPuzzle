@@ -43,12 +43,6 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
-        ImageView img = (ImageView) findViewById(R.id.mainPageAnimation);
-        img.setBackgroundResource(R.drawable.garfield1);
-        // Get the background, which has been compiled to an AnimationDrawable object.
-        AnimationDrawable frameAnimation = (AnimationDrawable) img.getBackground();
-        // Start the animation (looped playback by default).
-        frameAnimation.start();
 
         TextView userMoneyText = (TextView) findViewById(R.id.userMoney);
         userMoneyText.setText("" + AppClass.playerProgress.userMoney);

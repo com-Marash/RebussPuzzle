@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@android:color/holo_orange_light"
+    android:background="@drawable/starfish3"
     tools:context=".pages.mainPage.MainActivity">
 
     <TextView
@@ -54,13 +54,6 @@
         android:id="@+id/gameGridView"
         android:layout_below="@id/gameTitle"/>
 
-    <ImageView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        android:background="@android:color/white"
-        android:id="@+id/mainPageAnimation"
-        android:layout_gravity="center"
-        android:layout_below="@+id/gameGridView"
-        android:layout_alignParentStart="true" />
+
 
 </RelativeLayout>
