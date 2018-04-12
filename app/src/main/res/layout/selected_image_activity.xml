@@ -38,7 +38,7 @@
             android:id="@+id/numberOfCoins"
             android:textSize="20sp"
             android:textColor="@color/colorGold"
-            android:gravity="right"/>
+            android:gravity="end"/>
 
         <ImageView
             android:id="@+id/coinBankImage"
