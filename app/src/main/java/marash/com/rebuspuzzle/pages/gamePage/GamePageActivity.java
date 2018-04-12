@@ -76,13 +76,13 @@ public class GamePageActivity extends AppCompatActivity {
 
             //TODO this is just for words which is up to three parts.
             int sizeOfSolution = currentSolution.length();
-            if (sizeOfSolution>8){
-                if(currentSolution.contains(" ")){
+            if (sizeOfSolution>8) {
+                if (currentSolution.contains(" ")) {
                     int firstSpaceIndex = currentSolution.indexOf(" ");
-                    int secondSpaceIndex = currentSolution.indexOf(" " , currentSolution.indexOf(" ") + 1);
-                    if(firstSpaceIndex < 9 ){
-                        if(firstSpaceIndex < 8){
-                            if(secondSpaceIndex < 1) {
+                    int secondSpaceIndex = currentSolution.indexOf(" ", currentSolution.indexOf(" ") + 1);
+                    if (firstSpaceIndex < 9) {
+                        if (firstSpaceIndex < 8) {
+                            if (secondSpaceIndex < 1) {
                                 String[] tempArray = currentSolution.split(" ");
                                 String result = tempArray[0];
                                 int numberOfExtraSpace = 8 - firstSpaceIndex;
@@ -91,9 +91,9 @@ public class GamePageActivity extends AppCompatActivity {
                                 }
                                 result = result + tempArray[1];
                                 currentSolution = result;
-                            }else{
-                                if(secondSpaceIndex < 9){
-                                    if(secondSpaceIndex < 8){
+                            } else {
+                                if (secondSpaceIndex < 9) {
+                                    if (secondSpaceIndex < 8) {
                                         String[] tempArray = currentSolution.split(" ");
                                         String result = tempArray[0] + " " + tempArray[1];
                                         int numberOfExtraSpace = 8 - secondSpaceIndex;
@@ -103,7 +103,7 @@ public class GamePageActivity extends AppCompatActivity {
                                         result = result + tempArray[2];
                                         currentSolution = result;
                                     }
-                                }else{
+                                } else {
                                     String[] tempArray = currentSolution.split(" ");
                                     String result = tempArray[0];
                                     int numberOfExtraSpace = 8 - firstSpaceIndex;
@@ -111,10 +111,10 @@ public class GamePageActivity extends AppCompatActivity {
                                         result = result + " ";
                                     }
                                     result = result + tempArray[1];
-                                    currentSolution = result+ " " + tempArray[2];
+                                    currentSolution = result + " " + tempArray[2];
 
-                                    if(secondSpaceIndex < 17){
-                                        if(secondSpaceIndex < 16){
+                                    if (secondSpaceIndex < 17) {
+                                        if (secondSpaceIndex < 16) {
                                             int numberOfExtraSpace2 = 16 - secondSpaceIndex;
                                             for (int i = 0; i < numberOfExtraSpace2; i++) {
                                                 result = result + " ";
@@ -122,27 +122,24 @@ public class GamePageActivity extends AppCompatActivity {
                                             result = result + tempArray[2];
                                             currentSolution = result;
 
-                                        }else{
+                                        } else {
                                             // nemisazim injuri ke tule kalame 2 bozorgtar az 8 beshe
                                         }
                                     }
                                 }
                             }
                         }
-                    }else{
-                        if(firstSpaceIndex == 9){
+                    } else {
+                        if (firstSpaceIndex == 9) {
                             // no problem occure
-                        }else{
+                        } else {
                             // we pay attention to avoid setting up these kind of game. because first word is longer than 8 character.
                         }
                     }
-                }else{
+                } else {
 
                 }
-            }else{
-                //nothing
             }
-
             //TODO end
 
             solutionChars = new AlphabetChar[currentSolution.length()];
@@ -208,8 +205,7 @@ public class GamePageActivity extends AppCompatActivity {
             for (AlphabetChar a : solutionChars) {
                 s = s + a.getCharacter();
             }
-            //eliminatining all spaces between strings
-            s = s.replaceAll("\\s+","");
+            s = s.replaceAll("\\s+","");//eliminatining all spaces between strings
             if (s.equals(currentCell.getSolution().replaceAll("\\s+",""))) {
 
                 if(!gameProgressArray.get(levelNumber - 1).isSolved()){
